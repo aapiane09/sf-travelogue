@@ -35,8 +35,8 @@ app.use(express.static('public'));
  */
 
 app.get('/', function homepage(req, res) {
-  res.send("The server is up and running");
-  res.sendFile('/views/index.html', {root: __dirname});
+  // res.send("The server is up and running");
+  res.sendFile('./views/index.html', {root: __dirname});
 });
 
 /*
