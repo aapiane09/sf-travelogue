@@ -7,9 +7,10 @@ var PlaceSchema = new Schema({
   category: String,
   goodStuff: String,
   openingHour: String,
-  closingHour: String,
-  isOpen: Boolean,
-  imageUrl: String
+  closingHour: String
+  //stretch goals
+  // isOpen: Boolean,
+  // imageUrl: String
 });
 
 var Place = mongoose.model('Place', PlaceSchema);

@@ -18,10 +18,11 @@ The motivation for this project is to allow newcomers to San Francisco to have a
 
 SF-Travelogue API provides the following JSON endpoints:
 * ```GET /api ``` Describes all available endpoints
-* ```GET /api/neighborhoods``` Sends all neighborhoods as JSON
-* ```GET /api/neighborhoods/:name``` Sends one specific neighborhood as JSON
-* ```GET /api/neighborhoods/place/:id``` Sends one specific place
-* ```POST /api/neighborhood/place``` creates a new place to a neighborhood
-* ```PUT/api/neighborhood/place/:id``` Updates place attributes
-* ```PATCH /api/neighborhood/place/:id``` Updates place attributes (research?)
-* ```DELETE /api/neighborhood/place/:id``` Deletes one specific place
+* ```GET /api/neighborhoods``` get all neighborhoods as JSON
+* ```GET /api/neighborhoods/:hoodId``` get one specific neighborhood as JSON
+* ```GET /api/neighborhoods/:hoodId/places``` get all places from a neighborhood
+* ```GET /api/neighborhoods/:hoodId/places/:placeId``` get one specific place from a neighborhood
+* ```POST /api/neighborhoods/:hoodId/places``` create a new place for a neighborhood
+* ```PUT /api/neighborhoods/:hoodId/places/:placeId``` Updates one place attributes
+* ```PATCH /api/neighborhoods/:hoodId/places/:placeId``` Updates one place attributes (research?)
+* ```DELETE /api/neighborhoods/:hoodId/places/:placeId``` Delete one specific place from a neighborhood
