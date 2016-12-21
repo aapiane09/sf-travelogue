@@ -1,6 +1,8 @@
 //require modules
 var express = require('express'),
     bodyParser = require('body-parser'),
+    db = require('./models'),
+    controllers = require('./controllers'),
     app = express();
 //parse incoming urlencoded form data and populate the req.body object
 app.use(bodyParser.urlencoded({extended: true}));
@@ -41,23 +43,7 @@ app.get('/', function homepage(req, res) {
  * JSON API Endpoints
  */
 
-app.get('/api', function api_index(req, res) {
-  res.json({
-    message: "Welcome to SF-Travelogue API! Here's what you need to know!",
-    documentationUrl: "https://github.com/aapiane09/sf-travelogue/blob/master/README.md",
-    baseUrl: "http://sf-travelogue.herokuapp.com",
-    endpoints: [
-      {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/neighborhoods", description: "get all neighborhoods as JSON"},
-      {method: "GET", path: "/api/neighborhoods/:hoodId", description: " get one specific neighborhood as JSON"},
-      {method: "GET", path: "/api/neighborhoods/:hoodId/place/:placeId", description: "get one specific place from a neighborhood as JSON"},
-      {method: "POST", path: "/api/neighborhoods/:hoodId/place", description: "create a new place for a neighborhood"},
-      {method: "PUT", path: "/api/neighborhoods/:hoodId/place/:placeId", description: "Updates one place atributes"},
-      {method: "PATCH", path: "/api/neighborhoods/:hoodId/place/:placeId", description: "Updates one place atributes"},
-      {method: "DELETE", path: "/api/neighborhoods/:hoodId/place/:placeId", description: "Deletes one specific place from a neighborhood"}
-    ]
-  });
-});
+app.get('/api', controllers.neighborhoods.neighborhoods_index);
 
 // listen on the port that Heroku prescribes (process.env.PORT) OR port 3000
 app.listen(process.env.PORT || 3000, function () {
