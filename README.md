@@ -20,6 +20,7 @@ SF-Travelogue API provides the following JSON endpoints:
 * ```GET /api ``` Describes all available endpoints
 * ```GET /api/neighborhoods``` Sends all neighborhoods as JSON
 * ```GET /api/neighborhoods/:name``` Sends one specific neighborhood as JSON
+* ```GET /api/neighborhoods/place/:id``` Sends one specific place
 * ```POST /api/neighborhood/place``` creates a new place to a neighborhood
 * ```PUT/api/neighborhood/place/:id``` Updates place attributes
 * ```PATCH /api/neighborhood/place/:id``` Updates place attributes (research?)
