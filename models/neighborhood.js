@@ -4,7 +4,8 @@ var mongoose = require('mongoose'),
 var NeighborhoodSchema = new Schema({
   name: String,
   description: String,
-  places: [];
+  places: [],
+  imageUrl: String
 });
 
 var Neighborhood = mongoose.model('Neighborhood', NeighborhoodSchema);
