@@ -1,0 +1,28 @@
+{
+  "name": "sf-travelogue",
+  "version": "1.0.0",
+  "description": "A travel app for SF neighborhoods",
+  "main": "server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aapiane09/sf-travelogue.git"
+  },
+  "author": "Alessandro Pianetta, Greice Silva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aapiane09/sf-travelogue/issues"
+  },
+  "homepage": "https://github.com/aapiane09/sf-travelogue#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.7.4"
+  }
+}
