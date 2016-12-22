@@ -1,3 +1,9 @@
-.images-200 {
-height : 200px;  
+.images-240 {
+    height: 350px;
+    width: 240px;
+}
+
+.images-500 {
+    height: 350px;
+    width: 500px;
 }
