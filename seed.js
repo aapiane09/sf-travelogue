@@ -17,8 +17,7 @@ neighborhoodsList.push({
 });
 neighborhoodsList.push({
     name: "Fisherman's Wharf",
-    description: "Popular with tourists and sea lions, Fisherman's Wharf is full of shops, silly museums and family fun. Still a working wharf, its vendors sell thousands of tons of fish and shellfish. Take an early morning walk down "
-    Fish Alley " to see fisherman at work. Later, the Wharf is boardwalk-style family entertainment with decidedly tourist attractions such as Ripley's Believe It or Not! Museum, the Red & White Fleet, the Wax Museum, and, of rare interest to local San Franciscans, the Aquarium. For maritime-lovers and WWII buffs, the San Francisco Maritime Musuem is at the foot of Polk St. and massive USS Pampanito is docked right at Pier 45.",
+    description: "Popular with tourists and sea lions, Fisherman's Wharf is full of shops, silly museums and family fun. Still a working wharf, its vendors sell thousands of tons of fish and shellfish. Take an early morning walk down 'Fish Alley' to see fisherman at work. Later, the Wharf is boardwalk-style family entertainment with decidedly tourist attractions such as Ripley's Believe It or Not! Museum, the Red & White Fleet, the Wax Museum, and, of rare interest to local San Franciscans, the Aquarium. For maritime-lovers and WWII buffs, the San Francisco Maritime Musuem is at the foot of Polk St. and massive USS Pampanito is docked right at Pier 45.",
     places: [{
         name: "Pier 39",
         address: "Beach Street & The Embarcadero",
