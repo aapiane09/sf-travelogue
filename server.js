@@ -45,6 +45,7 @@ app.get('/', function homepage(req, res) {
 
 app.get('/api', controllers.api.index);
 app.get('/api/neighborhoods', controllers.neighborhoods.neighborhoods_index);
+app.get('/api/neighborhoods/:hoodId', controllers.neighborhoods.neighborhoods_show);
 
 
 // listen on the port that Heroku prescribes (process.env.PORT) OR port 3000
