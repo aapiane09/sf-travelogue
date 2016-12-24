@@ -17,15 +17,6 @@ function neighborhoods_show(req, res) {
   });
 }
 
-/*
-app.get('/api/projects/:id', function show_project(req, res){
-  var projectId = req.params.id;
-
-  db.Project.findOne({_id: projectId}, function(err, foundProject){
-    res.json(foundProject);
-  });
-});
-*/
 
 module.exports = {
   neighborhoods_index: neighborhoods_index,
