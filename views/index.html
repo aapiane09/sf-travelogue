@@ -18,7 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <!-- Handlebars -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
-    <script src="/scripts/app.js"></script>
+    <script src="scripts/app.js"></script>
 </head>
 
 <body>
@@ -26,6 +26,18 @@
         <div class="row">
             <div class="col s12">
                 <h1>SF Travelogue</h1>
+                <!-- MODAL STARTS HERE -->
+                <a class="waves-effect waves-light btn" data-target="modal1">Modal</a>
+                <div id="modal1" class="modal">
+                   <div class="modal-content">
+                     <h4>Modal Header</h4>
+                     <p>A bunch of text</p>
+                   </div>
+                   <div class="modal-footer">
+                     <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                   </div>
+                 </div>
+                 <!-- MODAL ENDS HERE -->
                 <hr>
             </div>
         </div>
