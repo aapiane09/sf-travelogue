@@ -1,12 +1,14 @@
 $(document).ready(function(){
-     $('.carousel').carousel();
-     $('.carousel.carousel-slider').carousel({full_width: true});
-     // Next slide
-     $('.carousel').carousel('next');
-     $('.carousel').carousel('next', 3); // Move next n times.
-     // Previous slide
-     $('.carousel').carousel('prev');
-     $('.carousel').carousel('prev', 4); // Move prev n times.
-     // Set to nth slide
-     $('.carousel').carousel('set', 4);
-   });
+console.log("DOM Ready!");
+
+//Initialize Form Modal
+  $(".btn").click(function (){
+    console.log("Button clicked!");
+    $('#modal1').modal();
+  })
+
+//Form Option Select
+  $('select').material_select();
+
+
+});

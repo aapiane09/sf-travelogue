@@ -1,9 +1,40 @@
+body {
+  background: url("/images/background.jpg");
+  background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+}
+
+.index {
+  background-color: rgba(255, 255, 255, 0.25);
+  height: 100%;
+}
+
+h1 {
+  text-align: center;
+  font-family: Pacifico, cursive;
+}
+
+hr {
+  border-color: rgba(0, 0, 0, 0.25);
+  width: 60%;
+}
+
+img {
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.images-200 {
+  width: 200px;
+}
+
 .images-240 {
     height: 350px;
     width: 240px;
 }
 
-.images-500 {
+.images-500{
     height: 350px;
-    width: 500px;
+    width: 330px;
 }

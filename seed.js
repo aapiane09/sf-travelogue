@@ -67,6 +67,7 @@ neighborhoodsList.push({
     }],
     imageURL: "..images/castro.jpg"
 });
+
 db.Neighborhood.remove({}, function(err, neighborhoods) {
     // code in here runs after all albums are removed
     db.Neighborhood.create(neighborhoodsList, function(err, neighborhoods) {
