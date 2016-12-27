@@ -40,10 +40,10 @@
                              <div class="row">
                                <div class="col s12">
                                  <select>
-                                   <option value="" disabled selected>Choose your option</option>
-                                   <option value="1">Option 1</option>
-                                   <option value="2">Option 2</option>
-                                   <option value="3">Option 3</option>
+                                   <option value="" disabled selected>Choose your neighborhood</option>
+                                   <option value="1">Mission</option>
+                                   <option value="2">Financial District</option>
+                                   <option value="3">Fisherman's Wharf</option>
                                  </select>
                                  <label>Materialize Select</label>
                                </div>
@@ -55,11 +55,11 @@
                      <!-- FORM STARTS HERE -->
 
                      <div class="row">
-                       <form class="col s12">
+                       <form class="col s12" method="POST" action="/api/neighborhoods/:hoodId/places">
                          <div class="row">
                            <div class="input-field col s6">
                              <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-                             <label for="first_name">First Name</label>
+                             <label for="first_name">Place Name</label>
                            </div>
 
                            <div class="col s6">
@@ -67,11 +67,11 @@
                                <div class="input-field col s12">
                                   <select>
                                     <option value="" disabled selected>Choose your option</option>
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
+                                    <option value="1">Restaurant</option>
+                                    <option value="2">School</option>
+                                    <option value="3">Bar</option>
                                   </select>
-                                  <label>Materialize Select</label>
+                                  <label>Category</label>
                                 </div>
                              </div>
                            </div>
@@ -80,13 +80,13 @@
                          <div class="row">
                            <div class="input-field col s12">
                               <textarea id="textarea1" class="materialize-textarea"></textarea>
-                              <label for="textarea1">Textarea</label>
+                              <label for="textarea1"><a href="#"></a>Address</label>
                            </div>
                          </div>
                          <div class="row">
                            <div class="input-field col s12">
                              <textarea id="textarea1" class="materialize-textarea"></textarea>
-                             <label for="textarea1">Textarea</label>
+                             <label for="textarea1">What is good?</label>
                            </div>
                          </div>
                        </form>
@@ -94,7 +94,7 @@
                      <!-- FORM ENDS HERE -->
                    </div>
                    <div class="modal-footer">
-                     <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                     <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Add</a>
                    </div>
                  </div>
                  <!-- MODAL ENDS HERE -->
