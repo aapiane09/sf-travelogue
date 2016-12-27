@@ -40,10 +40,10 @@
                              <div class="row">
                                <div class="col s12">
                                  <select>
-                                   <option value="" disabled selected>Neighborhood</option>
-                                   <option value="1">Option 1</option>
-                                   <option value="2">Option 2</option>
-                                   <option value="3">Option 3</option>
+                                   <option value="" disabled selected>Choose your neighborhood</option>
+                                   <option value="1">Mission</option>
+                                   <option value="2">Financial District</option>
+                                   <option value="3">Fisherman's Wharf</option>
                                  </select>
                                </div>
                              </div>
@@ -54,22 +54,23 @@
                      <!-- FORM STARTS HERE -->
 
                      <div class="row">
-                       <form class="col s12">
+                       <form class="col s12" method="POST" action="/api/neighborhoods/:hoodId/places/placeId">
                          <div class="row">
                            <div class="input-field col s6">
-                             <input id="place_name" type="text" class="validate">
-                             <label for="place_name">Place Name</label>
+                             <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+                             <label for="first_name">Place Name</label>
                            </div>
 
                            <div class="col s6">
                              <div class="row">
                                <div class="input-field col s12">
                                   <select>
-                                    <option value="" disabled selected>Category</option>
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
+                                    <option value="" disabled selected>Choose your option</option>
+                                    <option value="1">Restaurant</option>
+                                    <option value="2">School</option>
+                                    <option value="3">Bar</option>
                                   </select>
+                                  <label>Category</label>
                                 </div>
                              </div>
                            </div>
@@ -77,14 +78,14 @@
                          </div>
                          <div class="row">
                            <div class="input-field col s12">
-                              <textarea id="address" class="materialize-textarea"></textarea>
-                              <label for="address">Address</label>
+                              <textarea id="textarea1" class="materialize-textarea"></textarea>
+                              <label for="textarea1"><a href="#"></a>Address</label>
                            </div>
                          </div>
                          <div class="row">
                            <div class="input-field col s12">
-                             <textarea id="description" class="materialize-textarea"></textarea>
-                             <label for="description">Description</label>
+                             <textarea id="textarea1" class="materialize-textarea"></textarea>
+                             <label for="textarea1">What is good?</label>
                            </div>
                          </div>
                        </form>
@@ -161,6 +162,23 @@
           </div>
       </div>
     </footer> -->
+
+    <!-- Testing for neighborhoods rendering -->
+    <h4>My Neighborhoods</h4>
+          <div id ="neighborhoodTarget">
+            <!-- handlebars template -->
+            <script id="neighborhood-template" type="text/x-handlebars-template">
+              <hr>
+              <p><b>{{neighborhood.name}}</b> |</p>
+              <img class="screenshot" src="{{neighborhood.imageUrl}}">
+              <div>
+                <button type="button" name="button" class="deleteBtn btn btn-danger " data-id={{_id}}>Delete</button>
+              </div>
+            </script>
+            <!-- end handlebars template -->
+         </div>
+    <!-- End of neighborhoods redering test -->
+
 </body>
 
 </html>
