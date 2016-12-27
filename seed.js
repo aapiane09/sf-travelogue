@@ -13,7 +13,7 @@ neighborhoodsList.push({
         openingHour: "8:30 AM",
         closingHour: "10:00 PM"
     }],
-    imageURL: "../images/fidi.jpg"
+    imageUrl: "images/fidi.jpg"
 });
 neighborhoodsList.push({
     name: "Fisherman's Wharf",
@@ -26,7 +26,7 @@ neighborhoodsList.push({
         openingHour: "10:00 AM",
         closingHour: "10:00 PM"
     }],
-    imageURL: "../images/fishermanswharf.jpg"
+    imageUrl: "images/fishermanswharf.jpg"
 });
 neighborhoodsList.push({
     name: "The Mission",
@@ -39,7 +39,7 @@ neighborhoodsList.push({
         openingHour: "11:30 AM",
         closingHour: "10:00 PM"
     }],
-    imageURL: "../images/dolorespark.jpg"
+    imageUrl: "images/dolorespark.jpg"
 });
 neighborhoodsList.push({
     name: "Japantown",
@@ -52,7 +52,7 @@ neighborhoodsList.push({
         openingHour: "10:00 AM",
         closingHour: "8:00 PM"
     }],
-    imageURL: "..images/japantown.jpg"
+    imageUrl: "images/japantown.jpg"
 });
 neighborhoodsList.push({
     name: "The Castro",
@@ -65,7 +65,7 @@ neighborhoodsList.push({
         openingHour: "N/A",
         closingHour: "N/A"
     }],
-    imageURL: "..images/castro.jpg"
+    imageUrl: "images/castro.jpg"
 });
 
 db.Neighborhood.remove({}, function(err, neighborhoods) {
