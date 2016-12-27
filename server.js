@@ -39,6 +39,11 @@ app.get('/', function homepage(req, res) {
   res.sendFile('./views/index.html', {root: __dirname});
 });
 
+app.get('/neighborhoods/', function neighborhoods(req, res) {
+  // res.send("The server is up and running");
+  res.sendFile('./views/neighborhoods.html', {root: __dirname});
+});
+
 /*
  * JSON API Endpoints
  */
