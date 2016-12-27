@@ -55,7 +55,7 @@
                      <!-- FORM STARTS HERE -->
 
                      <div class="row">
-                       <form class="col s12" method="POST" action="/api/neighborhoods/:hoodId/places">
+                       <form class="col s12" method="POST" action="/api/neighborhoods/:hoodId/places/placeId">
                          <div class="row">
                            <div class="input-field col s6">
                              <input placeholder="Placeholder" id="first_name" type="text" class="validate">
@@ -163,6 +163,23 @@
           </div>
       </div>
     </footer> -->
+
+    <!-- Testing for neighborhoods rendering -->
+    <h4>My Neighborhoods</h4>
+          <div id ="neighborhoodTarget">
+            <!-- handlebars template -->
+            <script id="neighborhood-template" type="text/x-handlebars-template">
+              <hr>
+              <p><b>{{neighborhood.name}}</b> |</p>
+              <img class="screenshot" src="{{neighborhood.imageUrl}}">
+              <div>
+                <button type="button" name="button" class="deleteBtn btn btn-danger " data-id={{_id}}>Delete</button>
+              </div>
+            </script>
+            <!-- end handlebars template -->
+         </div>
+    <!-- End of neighborhoods redering test -->
+
 </body>
 
 </html>

@@ -1,6 +1,21 @@
+//app.js
+var template;
+var $neighborhoodsList;
+var allNeighborhoods = [];
 $(document).ready(function(){
   console.log("DOM Ready!");
 
+  $neighborhoodsList = $('#neighborhoodTarget');
+
+  var source = $('#neighborhood-template').html();
+  template = Handlebars.compile(source);
+
+  $.ajax({
+    method: 'GET',
+    url: '/api/neighborhoods',
+    success: onSuccess,
+    error: onError
+  })
 //Initialize Form Modal
   $(".btn").click(function (){
     console.log("Button clicked!");
@@ -9,6 +24,7 @@ $(document).ready(function(){
 
 //Form Option Select
   $('select').material_select();
+
 
 //Modal footer add button
 
@@ -24,6 +40,28 @@ $(document).ready(function(){
 //       });
 //   });
 });
+
+
+function render(){
+  console.log('render function');
+  var neighborhoodHtml;
+
+  allNeighborhoods.forEach(function(json){
+    neighborhoodHtml = template({ neighborhood: json});
+    $neighborhoodsList.append(neighborhoodHtml);
+  })
+}
+
+function onSuccess(json){
+  allNeighborhoods = json;
+  console.log("allNeighborhoods ", allNeighborhoods);
+  render();
+}
+
+function onError(){
+  $('#neighborhoodTarget').text('Failed to load neighborhoods, is the server running?');
+
+}
 
 // function newPlaceSuccess(json){
 //   $('#newProjetForm input').val('');
