@@ -47,9 +47,9 @@ function render(){
   var neighborhoodHtml;
 
   allNeighborhoods.forEach(function(json){
-    neighborhoodHtml = template({ neighborhood: json});
+    neighborhoodHtml = template({ neighborhood: json });
     $neighborhoodsList.append(neighborhoodHtml);
-  })
+  });
 }
 
 function onSuccess(json){
