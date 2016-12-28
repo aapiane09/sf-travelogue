@@ -17,39 +17,41 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <!-- Handlebars -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
-    <script src="/scripts/app.js"></script>
-    <script>
+    <script src="scripts/app.js"></script>
 
-    </script>
 </head>
 
 <body>
     <div class="container">
-      <div class="card-panel hoverable">
-        <div class="hood-container row">
-          <div class="col s7">
-            <h1><i class="medium material-icons">info</i>  The Mission</h1>
-            <div class="description">
-              <br>
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              <br><br>
-            </div>
-          </div>
+      <div id="neighborhoodTarget">
+        <script id="neighborhood-template" type="text/x-handlebars-template">
+        <div class="card-panel hoverable">
+            <div class="hood-container row">
+                <div class="col s7">
+                  <h1><i class="medium material-icons">info</i>{{neighborhood.name}}</h1>
+                  <div class="description">
+                    <br>
+                    {{neighborhood.description}}
+                    <br><br>
+                  </div>
+
+                </div>
           <div class="col s5 center-align">
-            <img class="images-300 center-align" src="../public/images/dolorespark.jpg" alt="">
+            <img class="images-300 center-align" src="{{neighborhood.imageUrl}}" alt="">
             <br><br>
             <a class="waves-effect waves-light btn-large"><i class="material-icons left">library_add</i>Add Place</a>
           </div>
-        </div>
       </div>
+    </div>
+
       <div class="card-panel hoverable">
           <div class="location-container row">
               <div class="col s7">
-                <h3>Alhamra</h3>
+                {{#each neighborhood.places}}
+                <h3>{{neighborhood.places}}</h3>
                 <div class="description">
-                    123 Fake Street<br>
-                    San Francisco, CA 10101<br>
-                    Phone: (123) 456-7890
+                    {{this.address}}<br>
+                    San Francisco CA<br>
                 </div>
                 <br><br>
                 <div class="center-align">
@@ -60,13 +62,17 @@
               <div class="col s5">
                 <div class="description">
                   <br>
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                  {{this.goodStuff}}
                   <br><br>
+                  {{/each}}
                 </div>
               </div>
           </div>
-      </div>
-      <div class="card-panel hoverable">
+        </div>
+
+      </script>
+  </div>
+      <!-- <div class="card-panel hoverable">
           <div class="location-container row">
             <div class="col s5">
               <div class="description">
@@ -89,8 +95,9 @@
               </div>
             </div>
           </div>
-      </div>
-    </div>
+      </div> -->
+
+</div>
 </body>
 
 </html>
