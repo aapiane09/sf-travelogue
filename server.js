@@ -44,6 +44,7 @@ app.get('/neighborhoods/', function neighborhoods(req, res) {
   res.sendFile('./views/neighborhoods.html', {root: __dirname});
 });
 
+
 /*
  * JSON API Endpoints
  */

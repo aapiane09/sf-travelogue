@@ -16,6 +16,10 @@ $(document).ready(function(){
     success: onSuccess,
     error: onError
   })
+
+//Initialize Slider
+$('.carousel.carousel-slider').carousel({full_width: true});
+
 //Initialize Form Modal
   $(".btn").click(function (){
     console.log("Button clicked!");
