@@ -28,7 +28,9 @@ function render(){
 
   allNeighborhoods.forEach(function(json){
     neighborhoodHtml = template({ neighborhood: json });
+    if(json._id === "5861dd168781786b9038aabd"){
     $neighborhoodsList.append(neighborhoodHtml);
+  }
   });
 
   //Initialize add place modal
