@@ -25,7 +25,7 @@
     <div class="container">
       <div id="neighborhoodTarget">
         <script id="neighborhood-template" type="text/x-handlebars-template">
-        <div class="card-panel hoverable">
+        <div class="card-panel hoverable" data-neighborhood-id="{{neighborhood._id}}">
             <div class="hood-container row">
                 <div class="col s7">
                   <h1><i class="medium material-icons">info</i>{{neighborhood.name}}</h1>
@@ -39,7 +39,77 @@
           <div class="col s5 center-align">
             <img class="images-500 center-align" src="{{neighborhood.imageUrl}}" alt="">
             <br><br>
-            <a class="waves-effect waves-light btn-large"><i class="material-icons left">library_add</i>Add Place</a>
+            <!-- MODAL STARTS HERE -->
+            <a class="waves-effect waves-light btn" data-target="modal1">Add Place</a>
+            <div id="modal1" class="modal modal-fixed-footer">
+               <div class="modal-content">
+                 <div class="row">
+                   <div class="col s12">
+                     <div class="row">
+                       <div class="col s5">
+                         <h4>Add Place</h4>
+                       </div>
+                       <div class="col s7">
+                         <div class="row">
+                           <div class="col s12">
+                             <select>
+                               <option value="" disabled selected>Choose your neighborhood</option>
+                               <option value="1">Mission</option>
+                               <option value="2">Financial District</option>
+                               <option value="3">Fisherman's Wharf</option>
+                             </select>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 <!-- FORM STARTS HERE -->
+
+                 <div class="row">
+                   <form id ="newPlaceForm" class="col s12" method="POST" action="/api/neighborhoods/:hoodId/places">
+                     <div class="row">
+                       <div class="input-field col s6">
+                         <input placeholder="" id="place_name" type="text" class="validate">
+                         <label for="first_name">Place Name</label>
+                       </div>
+
+                       <div class="col s6">
+                         <div class="row">
+                           <div class="input-field col s12">
+                              <select>
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="1">Restaurant</option>
+                                <option value="2">School</option>
+                                <option value="3">Bar</option>
+                              </select>
+                              <label>Category</label>
+                            </div>
+                         </div>
+                       </div>
+
+                     </div>
+                     <div class="row">
+                       <div class="input-field col s12">
+                          <textarea id="textarea1" class="materialize-textarea"></textarea>
+                          <label for="textarea1"><a href="#"></a>Address</label>
+                       </div>
+                     </div>
+                     <div class="row">
+                       <div class="input-field col s12">
+                         <textarea id="textarea1" class="materialize-textarea"></textarea>
+                         <label for="textarea1">What is good?</label>
+                       </div>
+                     </div>
+                   </form>
+                 </div>
+                 <!-- FORM ENDS HERE -->
+               </div>
+               <div class="modal-footer">
+                 <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="addPlace">Add</a>
+               </div>
+             </div>
+             <!-- MODAL ENDS HERE -->
           </div>
       </div>
     </div>
@@ -52,11 +122,77 @@
                 <div class="description">
                     {{this.address}}<br>
                     San Francisco CA<br>
+                    Hours:  {{this.openingHour}} to {{this.closingHour}}<br>
                 </div>
                 <br><br>
                 <div class="center-align">
-                  <a class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i>Edit Place</a>
-                  <a class="waves-effect waves-light btn"><i class="material-icons right">delete</i>Delete Place</a>
+                  <a class="waves-effect waves-light btn" data-target="modal2" id="edit_place"><i class="material-icons left">mode_edit</i>Edit Place</a>
+                  <!-- edit place modal starts here -->
+                  <div id="modal2" class="modal modal-fixed-footer">
+                     <div class="modal-content">
+                       <div class="row">
+                         <div class="col s12">
+                           <div class="row">
+                             <div class="col s5">
+                               <h4>Edit Place</h4>
+                             </div>
+                             <div class="col s7">
+                               <div class="row">
+                                 <div class="col s12">
+
+                                 </div>
+                               </div>
+                             </div>
+                           </div>
+                         </div>
+                       </div>
+                       <!-- FORM STARTS HERE -->
+
+                       <div class="row">
+                         <form id ="editPlaceForm" class="col s12" method="PUT" action="/api/neighborhoods/:hoodId/places/placeId">
+                           <div class="row">
+                             <div class="input-field col s6">
+                               <input placeholder="" id="place_name" type="text" class="validate">
+                               <label for="first_name">Place Name</label>
+                             </div>
+
+                             <div class="col s6">
+                               <div class="row">
+                                 <div class="input-field col s12">
+                                    <select>
+                                      <option value="" disabled selected>Choose your option</option>
+                                      <option value="1">Restaurant</option>
+                                      <option value="2">School</option>
+                                      <option value="3">Bar</option>
+                                    </select>
+                                    <label>Category</label>
+                                  </div>
+                               </div>
+                             </div>
+
+                           </div>
+                           <div class="row">
+                             <div class="input-field col s12">
+                                <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                <label for="textarea1"><a href="#"></a>Address</label>
+                             </div>
+                           </div>
+                           <div class="row">
+                             <div class="input-field col s12">
+                               <textarea id="textarea1" class="materialize-textarea"></textarea>
+                               <label for="textarea1">What is good?</label>
+                             </div>
+                           </div>
+                         </form>
+                       </div>
+                       <!-- FORM ENDS HERE -->
+                     </div>
+                     <div class="modal-footer">
+                       <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="editPlace">Add</a>
+                     </div>
+                   </div>
+                   <!-- MODAL ENDS HERE -->
+                  <a class="waves-effect waves-light btn" id="delete_place"><i class="material-icons right">delete</i>Delete Place</a>
                 </div>
               </div>
               <div class="col s5">
@@ -70,7 +206,7 @@
           </div>
         </div>
 
-      </script>
+    </script>
   </div>
       <!-- <div class="card-panel hoverable">
           <div class="location-container row">
