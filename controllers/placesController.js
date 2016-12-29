@@ -16,6 +16,7 @@ function index(req, res) {
 function create(req, res) {
   var hoodId = req.params.hoodId;
   var newPlace = new db.Place(req.body);
+  console.log(newPlace, "this is new place");
 
   db.Neighborhood.findOne({_id: hoodId}, function(err, foundNeighborhood){
     foundNeighborhood.places.push(newPlace);
