@@ -5,6 +5,9 @@ var allNeighborhoods = [];
 $(document).ready(function(){
   console.log("DOM Ready!");
 
+  //Form Option Select
+  $('select').material_select();
+
   $neighborhoodsList = $('#neighborhoodTarget');
 
   var source = $('#neighborhood-template').html();
@@ -15,34 +18,7 @@ $(document).ready(function(){
     url: '/api/neighborhoods',
     success: onSuccess,
     error: onError
-  })
-
-//Initialize Slider
-$('.carousel.carousel-slider').carousel({full_width: true});
-
-//Initialize Form Modal
-  $(".btn").click(function (){
-    console.log("Button clicked!");
-    $('#modal1').modal();
-  })
-
-//Form Option Select
-  $('select').material_select();
-
-
-//Modal footer add button
-
-//   $('.modal-action').on('click', function(target){
-//     target.preventDefault();
-//       console.log('new place serialized', $(this).serializeArray());
-//       $.ajax({
-//         method: 'POST',
-//         url: 'api/neighborhoods/:hoodId/places',
-//         data: $(this).serializeArray(),
-//         success: newPlaceSuccess,
-//         error: newPlaceError
-//       });
-//   });
+    
 });
 
 
@@ -51,9 +27,34 @@ function render(){
   var neighborhoodHtml;
 
   allNeighborhoods.forEach(function(json){
-    neighborhoodHtml = template({ neighborhood: json});
+    neighborhoodHtml = template({ neighborhood: json });
     $neighborhoodsList.append(neighborhoodHtml);
-  })
+  });
+
+  //Initialize add place modal
+  $(".btn").click(function (){
+    console.log("Button clicked!");
+    $('#modal1').modal();
+  });
+
+  //Initialize edit place modal
+  $("#edit_place").click(function(){
+    console.log("Button clicked!");
+    $('#modal2').modal();
+  });
+
+  //add place button
+  $('.btn-flat').on('click', function(target){
+    target.preventDefault();
+      console.log('new place serialized', $(this).serialize());
+      $.ajax({
+        method: 'POST',
+        url: 'api/neighborhoods/:hoodId/places',
+        data: $(this).serialize(),
+        success: newPlaceSuccess,
+        error: newPlaceError
+      });
+  });
 }
 
 function onSuccess(json){
@@ -67,13 +68,13 @@ function onError(){
 
 }
 
-// function newPlaceSuccess(json){
-//   $('#newProjetForm input').val('');
-//   allProjects.push(json);//what does this do?
-//   console.log("new project created", json);
-//   render();
-// }
-//
-// function newPlaceError(){
-//   console.log('new project error!');
-// }
+function newPlaceSuccess(json){
+  $('#newPlaceForm input').val('');
+  allNeighborhoods.push(json);
+  console.log("new place created", json);
+  render();
+}
+
+function newPlaceError(){
+  console.log('new place error!');
+}
