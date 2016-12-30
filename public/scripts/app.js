@@ -2,6 +2,8 @@
 var template;
 var $neighborhoodsList;
 var allNeighborhoods = [];
+var neighborhoodId;
+
 
 $(document).ready(function(){
   console.log("DOM Ready!");
@@ -28,15 +30,21 @@ $(document).ready(function(){
 
 function render(data){
   console.log('render function');
-  var neighborhoodHtml;
 
+  var neighborhoodHtml;
   allNeighborhoods.forEach(function(json){
     if (json._id === '5862d0569396db5486b1eff1') {
     neighborhoodHtml = template({ neighborhood: json });
+    if(json._id === "5861dd168781786b9038aabf" ){
     $neighborhoodsList.append(neighborhoodHtml);
-    }
+  }
+
   });
 
+  $('#neighborhood').on('click','#neighborhood-id', function(e){
+    neighborhoodId = $(this).data('neighborhood-id');
+    console.log(neighborhoodId);
+  });
 
   //Initialize add place modal
   $(".btn").click(function (){
@@ -56,7 +64,7 @@ function render(data){
       console.log('new place serialized', $(this).serialize());
       $.ajax({
         method: 'POST',
-        url: 'api/neighborhoods/:hoodId/places',
+        url: 'api/neighborhoods/' + neighborhoodId + '/places',
         data: $(this).serialize(),
         success: newPlaceSuccess,
         error: newPlaceError
@@ -76,10 +84,11 @@ function onError(){
 }
 
 function newPlaceSuccess(json){
-  $('#newPlaceForm input').val('');
-  allNeighborhoods.push(json);
-  console.log("new place created", json);
-  render();
+  console.log("new place success")
+  // $('#newPlaceForm input').val('');
+  // allNeighborhoods.push(json);
+  // console.log("new place created", json);
+  // render();
 }
 
 function newPlaceError(){

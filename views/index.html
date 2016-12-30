@@ -26,6 +26,18 @@
         <div class="row">
             <div class="col s12">
                 <h1>SF Travelogue</h1>
+                <!-- greice test -->
+                    <div class="row" id="neighborhood">
+                      <div id="neighborhoodTarget">
+                        <script id="neighborhood-template" type="text/x-handlebars-template">
+                      <div id="neighborhood-id" data-neighborhood-id="{{neighborhood._id}}">
+                        <a  href="#"> <img id="mission" class="images-240 hood hoverable" src="{{neighborhood.imageUrl}}" alt=""> </a>
+                        Id: {{neighborhood._id}}
+                      </div>
+                    </script>
+                    </div>
+                </div>
+                <!-- end of greice test-->
                 <!-- MODAL STARTS HERE -->
                 <!-- <a class="waves-effect waves-light btn" data-target="modal1">Add Place</a>
                 <div id="modal1" class="modal modal-fixed-footer">
@@ -97,33 +109,8 @@
                    </div>
                  </div> -->
                  <!-- MODAL ENDS HERE -->
-                <hr>
-                <br>
-                <!-- SLIDER BEGINS HERE -->
-                <div class="carousel carousel-slider center" data-indicators="true">
-                  <div class="carousel-fixed-item center">
-                    <a class="btn waves-effect white grey-text darken-text-2">button</a>
-                  </div>
-                  <div class="carousel-item red white-text" href="#one!">
-                    <h2>First Panel</h2>
-                    <p class="white-text">This is your first panel</p>
-                  </div>
-                  <div class="carousel-item amber white-text" href="#two!">
-                    <h2>Second Panel</h2>
-                    <p class="white-text">This is your second panel</p>
-                  </div>
-                  <div class="carousel-item green white-text" href="#three!">
-                    <h2>Third Panel</h2>
-                    <p class="white-text">This is your third panel</p>
-                  </div>
-                  <div class="carousel-item blue white-text" href="#four!">
-                    <h2>Fourth Panel</h2>
-                    <p class="white-text">This is your fourth panel</p>
-                  </div>
-                </div>
-                <!-- SLIDER ENDS HERE -->
-                <br>
-                <hr>
+
+                <!-- <hr>
             </div>
         </div>
         <div class="row">
@@ -162,7 +149,7 @@
                 <img class="images-240 hood hoverable" src="/images/fishermanswharf.jpg" alt="">
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- <footer class="page-footer">
       <div class="container">
           <div class="row">
