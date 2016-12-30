@@ -2,6 +2,7 @@
 var template;
 var $neighborhoodsList;
 var allNeighborhoods = [];
+
 $(document).ready(function(){
   console.log("DOM Ready!");
 
@@ -22,45 +23,20 @@ $(document).ready(function(){
     success: onSuccess,
     error: onError
   });
-
-
-// //Initialize Form Modal
-//   $(".btn").click(function (){
-//     console.log("Button clicked!");
-//     $('#modal1').modal();
-//   })
-
-//Form Option Select
-  $('select').material_select();
-
-
-//Modal footer add button
-
-//   $('.modal-action').on('click', function(target){
-//     target.preventDefault();
-//       console.log('new place serialized', $(this).serializeArray());
-//       $.ajax({
-//         method: 'POST',
-//         url: 'api/neighborhoods/:hoodId/places',
-//         data: $(this).serializeArray(),
-//         success: newPlaceSuccess,
-//         error: newPlaceError
-//       });
-//   });
 });
 
 
-
-function render(){
- console.log('render function');
- var neighborhoodHtml;
+function render(data){
+  console.log('render function');
+  var neighborhoodHtml;
 
   allNeighborhoods.forEach(function(json){
+    if (json._id === '5862d0569396db5486b1eff1') {
     neighborhoodHtml = template({ neighborhood: json });
-    if(json._id === "5861dd168781786b9038aabd"){
     $neighborhoodsList.append(neighborhoodHtml);
-  }
+    }
   });
+
 
   //Initialize add place modal
   $(".btn").click(function (){
