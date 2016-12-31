@@ -1,27 +1,17 @@
-//app.js
-var indexTemplate;
-var hoodTemplate;
-var $hoodList;
-var $indexList;
+var template;
+var $neighborhoodsList;
 var allNeighborhoods = [];
 var neighborhoodId;
-var hoodSource;
 $(document).ready(function(){
   console.log("DOM Ready!");
 
   //Form Option Select
   $('select').material_select();
 
-  $indexList = $('#indexTarget');
-  $hoodList = $('#neighborhoodTarget');
+  $neighborhoodsList = $('#neighborhoodTarget');
 
-  var indexSource = $('#index-template').html();
-  indexTemplate = Handlebars.compile(indexSource);
-
-
-  hoodSource = $('#neighborhood-template').html();
-  console.log(hoodSource, "this is hoodSource");
-  hoodTemplate = Handlebars.compile(hoodSource);
+  var source = $('#neighborhood-template').html();
+  template = Handlebars.compile(source);
 
   $.ajax({
     method: 'GET',
@@ -29,31 +19,13 @@ $(document).ready(function(){
     success: onSuccess,
     error: onError
   });
-
-
-
-  $('#neighborhood').on('click','#neighborhood-id', function(e){
-    console.log("picture clicked");
-    neighborhoodId = $(this).data('neighborhood-id');
-    $('#modal1').modal();
-    render();
-  });
 });
 
 
 function render(neighborhoodId){
   console.log('render function');
-  console.log('allNeighborhoods', allNeighborhoods);
   var neighborhoodHtml;
   allNeighborhoods.forEach(function(json){
-<<<<<<< HEAD
-    neighborhoodHtml = hoodTemplate({ neighborhood: json });
-    if(json._id === neighborhoodId ){
-    $hoodList.append(neighborhoodHtml);
-  }
-  });
-  console.log(neighborhoodId, "this is hoodId");
-=======
     neighborhoodHtml = template({ neighborhood: json });
     // if(json._id === neighborhoodId ){
     $neighborhoodsList.append(neighborhoodHtml);
@@ -67,14 +39,12 @@ function render(neighborhoodId){
     $('#neighborhoodTarget').empty();
     allNeighborhoods.forEach(function(json){
       neighborhoodHtml = template({ neighborhood: json });
-      console.log(neighborhoodHtml);
       if(json._id === neighborhoodId ){
       $neighborhoodsList.append(neighborhoodHtml);
     }
   })
 });
 
->>>>>>> bb0bdc7457235e9b32a8bab92952f7c0140bf7e2
 
 
 //Mike's JS
@@ -86,14 +56,14 @@ function render(neighborhoodId){
   // })
 
   //Initialize add place modal
-  $(".btn").click(function (){
+  $("#openPlace").click(function (){
     console.log("Button clicked!");
     $('#modal1').modal();
   });
 
   //Initialize edit place modal
   $("#edit_place").click(function(){
-    console.log("Button clicked!");
+    console.log("Button edit-place clicked!");
     $('#modal2').modal();
   });
 
@@ -103,7 +73,7 @@ function render(neighborhoodId){
       console.log('new place serialized', $(this).serialize());
       $.ajax({
         method: 'POST',
-        url: 'api/neighborhoods/5861dd168781786b9038aabf/places',
+        url: 'api/neighborhoods/' + neighborhoodId + '/places',
         data: $(this).serialize(),
         success: newPlaceSuccess,
         error: newPlaceError
@@ -111,22 +81,9 @@ function render(neighborhoodId){
   });
 }
 
-
-function renderIndex(){
-  console.log('renderIndex function');
-
-  var indexHtml;
-  allNeighborhoods.forEach(function(json){
-    indexHtml = indexTemplate({ neighborhood: json });
-    $indexList.append(indexHtml);
-  });
-
-}
-
 function onSuccess(json){
   allNeighborhoods = json;
   console.log("allNeighborhoods ", allNeighborhoods);
-  renderIndex();
   render();
 }
 
