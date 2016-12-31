@@ -18,7 +18,6 @@ $(document).ready(function(){
   template = Handlebars.compile(source);
 
   //Places Handlebars Template
-  $placeList = $('#placesTarget');
   var source = $('#place-template').html();
   placeTemplate = Handlebars.compile(source);
 
@@ -38,20 +37,18 @@ function render(){
   allNeighborhoods.forEach(function(json){
     neighborhoodHtml = template({ neighborhood: json });
     $neighborhoodsList.append(neighborhoodHtml);
-    placeHtml = placeTemplate({neighborhood: json});
-    // if(json._id === neighborhoodId ){
-    $neighborhoodsList.append(placeHtml);
-  // }
   });
 
-  $('#neighborhood').on('click','#neighborhood-id', function(e){
+  $('#neighborhoodTarget').on('click','.neighborhood-id', function(e){
     neighborhoodId = $(this).data('neighborhood-id');
     console.log(neighborhoodId);
     $('#neighborhoodTarget').empty();
     allNeighborhoods.forEach(function(json){
       neighborhoodHtml = template({ neighborhood: json });
+      placeHtml = placeTemplate({neighborhood: json});
       if(json._id === neighborhoodId ){
       $neighborhoodsList.append(neighborhoodHtml);
+      $neighborhoodsList.append(placeHtml);
     }
   })
 });

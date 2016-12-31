@@ -29,7 +29,7 @@
           <div id="neighborhoodTarget">
             <script id="neighborhood-template" type="text/x-handlebars-template">
               <div class="card-panel hoverable">
-                <div class="row" id="neighborhood">
+                <div class="row" class="hood" id="neighborhood">
                   <div class="neighborhood-id" data-neighborhood-id="{{neighborhood._id}}">
                     <div class="hood-container row">
                       <div class="col s7">
@@ -42,7 +42,7 @@
                         </div> <!-- description -->
                       </div> <!-- col s7 -->
                       <div class="col s5 center-align">
-                        <img src="{{neighborhood.imageUrl}}" class="images-500 center-align" alt="">
+                        <img id="link" src="{{neighborhood.imageUrl}}" class="images-500 center-align" alt="">
                         <br><br>
                         <!-- MODAL STARTS HERE -->
                         <a class="waves-effect waves-light btn" data-target="modal1">Add Place</a>
