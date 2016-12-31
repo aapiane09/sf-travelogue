@@ -1,24 +1,42 @@
 //app.js
-var template;
-var $neighborhoodsList;
+var indexTemplate;
+var hoodTemplate;
+var $hoodList;
+var $indexList;
 var allNeighborhoods = [];
 var neighborhoodId;
+var hoodSource;
 $(document).ready(function(){
   console.log("DOM Ready!");
 
   //Form Option Select
   $('select').material_select();
 
-  $neighborhoodsList = $('#neighborhoodTarget');
+  $indexList = $('#indexTarget');
+  $hoodList = $('#neighborhoodTarget');
 
-  var source = $('#neighborhood-template').html();
-  template = Handlebars.compile(source);
+  var indexSource = $('#index-template').html();
+  indexTemplate = Handlebars.compile(indexSource);
+
+
+  hoodSource = $('#neighborhood-template').html();
+  console.log(hoodSource, "this is hoodSource");
+  hoodTemplate = Handlebars.compile(hoodSource);
 
   $.ajax({
     method: 'GET',
     url: '/api/neighborhoods',
     success: onSuccess,
     error: onError
+  });
+
+
+
+  $('#neighborhood').on('click','#neighborhood-id', function(e){
+    console.log("picture clicked");
+    neighborhoodId = $(this).data('neighborhood-id');
+    $('#modal1').modal();
+    render();
   });
 });
 
@@ -28,17 +46,12 @@ function render(){
 
   var neighborhoodHtml;
   allNeighborhoods.forEach(function(json){
-    neighborhoodHtml = template({ neighborhood: json });
-    if(json._id === "5861dd168781786b9038aabf" ){
-    $neighborhoodsList.append(neighborhoodHtml);
+    neighborhoodHtml = hoodTemplate({ neighborhood: json });
+    if(json._id === neighborhoodId ){
+    $hoodList.append(neighborhoodHtml);
   }
-
   });
-
-  $('#neighborhood').on('click','#neighborhood-id', function(e){
-    neighborhoodId = $(this).data('neighborhood-id');
-    console.log(neighborhoodId);
-  });
+  console.log(neighborhoodId, "this is hoodId");
 
 
 
@@ -60,7 +73,7 @@ function render(){
       console.log('new place serialized', $(this).serialize());
       $.ajax({
         method: 'POST',
-        url: 'api/neighborhoods/' + neighborhoodId + '/places',
+        url: 'api/neighborhoods/5861dd168781786b9038aabf/places',
         data: $(this).serialize(),
         success: newPlaceSuccess,
         error: newPlaceError
@@ -68,9 +81,22 @@ function render(){
   });
 }
 
+
+function renderIndex(){
+  console.log('renderIndex function');
+
+  var indexHtml;
+  allNeighborhoods.forEach(function(json){
+    indexHtml = indexTemplate({ neighborhood: json });
+    $indexList.append(indexHtml);
+  });
+
+}
+
 function onSuccess(json){
   allNeighborhoods = json;
   console.log("allNeighborhoods ", allNeighborhoods);
+  renderIndex();
   render();
 }
 
