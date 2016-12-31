@@ -41,19 +41,49 @@ $(document).ready(function(){
 });
 
 
-function render(){
+function render(neighborhoodId){
   console.log('render function');
-
+  console.log('allNeighborhoods', allNeighborhoods);
   var neighborhoodHtml;
   allNeighborhoods.forEach(function(json){
+<<<<<<< HEAD
     neighborhoodHtml = hoodTemplate({ neighborhood: json });
     if(json._id === neighborhoodId ){
     $hoodList.append(neighborhoodHtml);
   }
   });
   console.log(neighborhoodId, "this is hoodId");
+=======
+    neighborhoodHtml = template({ neighborhood: json });
+    // if(json._id === neighborhoodId ){
+    $neighborhoodsList.append(neighborhoodHtml);
+  // }
+
+  });
+
+  $('#neighborhood').on('click','#neighborhood-id', function(e){
+    neighborhoodId = $(this).data('neighborhood-id');
+    console.log(neighborhoodId);
+    $('#neighborhoodTarget').empty();
+    allNeighborhoods.forEach(function(json){
+      neighborhoodHtml = template({ neighborhood: json });
+      console.log(neighborhoodHtml);
+      if(json._id === neighborhoodId ){
+      $neighborhoodsList.append(neighborhoodHtml);
+    }
+  })
+});
+
+>>>>>>> bb0bdc7457235e9b32a8bab92952f7c0140bf7e2
 
 
+//Mike's JS
+  // $('#neighborhood').on('click', '#neighborhood-id', function(event){
+  //   // $('.gifSelectionField2').empty();
+  //   console.log('i still know what you clicked on! ', this.src);
+  //   // var pickedGfHtml = templateGifChoice({ userChosenGif: this.src});
+  //   // $(".selected-gif").append(pickedGifHtml);
+  // })
 
   //Initialize add place modal
   $(".btn").click(function (){

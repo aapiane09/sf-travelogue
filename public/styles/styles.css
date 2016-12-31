@@ -5,6 +5,10 @@ body {
 	background-size: cover;
 }
 
+.container {
+  width: 80%
+}
+
 .index {
   background-color: rgba(255, 255, 255, 0.25);
   height: 100%;
@@ -13,6 +17,11 @@ body {
 h1 {
   text-align: center;
   font-family: Pacifico, cursive;
+}
+
+.description {
+  border: 1px solid black;
+  border-radius: 2px;
 }
 
 hr {
@@ -34,10 +43,14 @@ img {
 
 .images-240 {
     height: 350px;
-    width: 240px;
+    width: 100%;
+}
+
+.images-300 {
+  width: 300px;
 }
 
 .images-500{
     height: 350px;
-    width: 330px;
+    width: 100%;
 }
