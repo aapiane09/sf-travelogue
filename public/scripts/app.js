@@ -3,16 +3,24 @@ var template;
 var $neighborhoodsList;
 var allNeighborhoods = [];
 var neighborhoodId;
+var $placeList;
+var placeTemplate;
+
 $(document).ready(function(){
   console.log("DOM Ready!");
 
   //Form Option Select
   $('select').material_select();
 
+  //Neighborhoods Handlebars Template
   $neighborhoodsList = $('#neighborhoodTarget');
-
   var source = $('#neighborhood-template').html();
   template = Handlebars.compile(source);
+
+  //Places Handlebars Template
+  $placeList = $('#placesTarget');
+  var source = $('#place-template').html();
+  placeTemplate = Handlebars.compile(source);
 
   $.ajax({
     method: 'GET',
@@ -23,16 +31,17 @@ $(document).ready(function(){
 });
 
 
-function render(neighborhoodId){
+function render(){
   console.log('render function');
-  console.log('allNeighborhoods', allNeighborhoods);
   var neighborhoodHtml;
+  var placeHtml;
   allNeighborhoods.forEach(function(json){
     neighborhoodHtml = template({ neighborhood: json });
-    // if(json._id === neighborhoodId ){
     $neighborhoodsList.append(neighborhoodHtml);
+    placeHtml = placeTemplate({neighborhood: json});
+    // if(json._id === neighborhoodId ){
+    $neighborhoodsList.append(placeHtml);
   // }
-
   });
 
   $('#neighborhood').on('click','#neighborhood-id', function(e){
