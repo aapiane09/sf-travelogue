@@ -41,7 +41,6 @@ function render(neighborhoodId){
     $('#neighborhoodTarget').empty();
     allNeighborhoods.forEach(function(json){
       neighborhoodHtml = template({ neighborhood: json });
-      console.log(neighborhoodHtml);
       if(json._id === neighborhoodId ){
       $neighborhoodsList.append(neighborhoodHtml);
     }
