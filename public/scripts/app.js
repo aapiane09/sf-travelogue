@@ -50,43 +50,93 @@ function render(){
       $neighborhoodsList.append(neighborhoodHtml);
       $neighborhoodsList.append(placeHtml);
     }
-  })
-});
+  }) //forEach
+    $('#neighborhoodTarget').off('click', '.neighborhood-id');
+    console.log("after forEach");
+    initializeCrud();
+  }); //on click
+}; //render
 
-
-
-//Mike's JS
-  // $('#neighborhood').on('click', '#neighborhood-id', function(event){
-  //   // $('.gifSelectionField2').empty();
-  //   console.log('i still know what you clicked on! ', this.src);
-  //   // var pickedGfHtml = templateGifChoice({ userChosenGif: this.src});
-  //   // $(".selected-gif").append(pickedGifHtml);
-  // })
-
-  //Initialize add place modal
-  $(".btn").click(function (){
-    console.log("Button clicked!");
-    $('#modal1').modal();
-  });
+function initializeCrud(){
+  console.log("initializeCrud")
+  //when the add place button is clicked, display the modal
+  $("#openPlaceModal").click(function (){
+    console.log("Button open place modal clicked!");
+    currentNeighborhoodId = $(this).closest('.Neighborhood').data('neighborhood-id');
+    $('#modal1').data('neighborhood-id', currentNeighborhoodId);
+    $('#modal1').modal();//display the modal!
+  }); //WORKING
 
   //Initialize edit place modal
-  $("#edit_place").click(function(){
-    console.log("Button clicked!");
+  $(".edit_place").click(function(){
+    console.log("Button open edit_place clicked!");
+    var currentPlaceId = $(this).closest('.place-id').data('place-id');
+    console.log(currentPlaceId)
     $('#modal2').modal();
-  });
+  }); //WORKING
 
   //add place button
-  $('.btn-flat').on('click', function(target){
+  $('#addPlace').on('click', function(target){
     target.preventDefault();
-      console.log('new place serialized', $(this).serialize());
-      $.ajax({
-        method: 'POST',
-        url: 'api/neighborhoods/' + neighborhoodId + '/places',
-        data: $(this).serialize(),
-        success: newPlaceSuccess,
-        error: newPlaceError
-      });
-  });
+    var $modal1 = $('#modal1');
+    var $placeNameField = $modal1.find('#place_name');
+    var dataToPost = {
+      name: $placeNameField.val()
+      };
+    var testId = $modal1.data(testId);
+    $.ajax({
+      method: 'POST',
+      url: 'api/neighborhoods/' + neighborhoodId + '/places',
+      data: dataToPost,
+      success: newPlaceSuccess,
+      error: newPlaceError
+    });
+  }); //WORKING
+
+// ​
+//   //edit place button
+//   $('#editPlace').on('click', function(target){
+//     target.preventDefault();
+//     console.log('this serialized', $(this).serialize());
+//     $.ajax({
+//       method: 'PUT',
+//       url: 'api/neighborhoods/'+neighborhoodId+'/places/'+placeId,
+//       data: $(this).serialize(),
+//       success: editPlaceSuccess,
+//       error: editPlaceError
+//     });
+//   });
+// }
+//
+
+  //Initialize delete place modal
+  $(".delete_place").click(function (){
+    console.log("Delete Button clicked!");
+    var currentPlaceId = $(this).closest('.place-id').data('place-id');
+    console.log(neighborhoodId + ", " + currentPlaceId);
+    var url = '/api/neighborhoods/' + neighborhoodId + '/places/' + currentPlaceId;
+    console.log('send DELETE ', url);
+    $.ajax({
+      method: 'DELETE',
+      url: url,
+      success: handlePlaceDeleteResponse
+    });
+  }); //WORKING
+
+  function handlePlaceDeleteResponse(data) {
+  console.log('handleSongDeleteResponse got ', data);
+  var placeIdToDelete = data._id;
+  var $divToDelete = $('#' + placeIdToDelete);
+  console.log($divToDelete)
+  $divToDelete.remove();
+} //WORKING
+
+//   //Initialize edit place modal
+//   $("#edit_place").click(function(){
+//     console.log("Button clicked!");
+//     $('#modal2').modal();
+//   });
+//
 }
 
 function onSuccess(json){
@@ -100,13 +150,17 @@ function onError(){
 
 }
 
-function newPlaceSuccess(json){
-  console.log("new place success")
-  // $('#newPlaceForm input').val('');
-  // allNeighborhoods.push(json);
-  // console.log("new place created", json);
+function newPlaceSuccess(data){
+  console.log("new place success", data)
+  var newPlaceSource = $('#place-template').html();
+  console.log(newPlaceSource);
+  var newPlaceTemplate = Handlebars.compile(newPlaceSource);
+  console.log('Hit new place template!')
+  var newPlaceHtml = newPlaceTemplate({ places : data});
+  console.log("New Place Html ", newPlaceHtml);
+  // $('#neighborhoodTarget').remove();
   // render();
-}
+} //NOT APPENDING DATA TO PAGE
 
 function newPlaceError(){
   console.log('new place error!');
