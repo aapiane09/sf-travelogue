@@ -19,9 +19,19 @@ h1 {
   font-family: Pacifico, cursive;
 }
 
+.card-panel {
+  background: url("/images/kale-salad.jpg");
+  width: 110%;
+  margin-left: -5%;
+  border-radius: 5px;
+}
+
 .description {
   border: 1px solid black;
+  background: url("/images/sayagata-400px/sayagata-400px.png");
+  background-size: cover;
   border-radius: 2px;
+  padding: 0px 10px;
 }
 
 hr {

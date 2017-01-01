@@ -3,7 +3,6 @@ var template;
 var $neighborhoodsList;
 var allNeighborhoods = [];
 var neighborhoodId;
-var placeId;
 var $placeList;
 var placeTemplate;
 
@@ -49,78 +48,43 @@ function render(){
       neighborhoodHtml = template({ neighborhood: json });
       placeHtml = placeTemplate({neighborhood: json});
       if(json._id === neighborhoodId ){
-        $neighborhoodsList.append(neighborhoodHtml);
-        $neighborhoodsList.append(placeHtml);
-      }
+      $neighborhoodsList.append(neighborhoodHtml);
+      $neighborhoodsList.append(placeHtml);
+    }
+  }) //forEach
+    $('#neighborhoodTarget').off('click', '.neighborhood-id');
+    console.log("after forEach");
+    initializeCrud();
+  }); //on click
+}; //render
 
-  });
-
-  $('#neighborhoodTarget').off('click', '.neighborhood-id');
-  console.log("after forEach");
-    testFuc();
-
-  });
-  console.log("after click");
-
-
-
-
-}
-
-function fetchAndRenderPlaceWithId(placeId){
-  var newPlaceHtml = placeTemplate({neighborhood: })
-}
-
-
-function testFuc(){
-  console.log("testFuc")
-
+function initializeCrud(){
+  console.log("initializeCrud")
   //when the add place button is clicked, display the modal
   $("#openPlaceModal").click(function (){
     console.log("Button open place modal clicked!");
-    var currentNeighborhoodId = $(this).closest('.Neighborhood').data('neighborhood-id');
-    $('#modal1').data('album-id', currentNeighborhoodId);
+    currentNeighborhoodId = $(this).closest('.Neighborhood').data('neighborhood-id');
+    $('#modal1').data('neighborhood-id', currentNeighborhoodId);
     $('#modal1').modal();//display the modal!
-  });
+  }); //WORKING
 
   //Initialize edit place modal
   $(".edit_place").click(function(){
     console.log("Button open edit_place clicked!");
-    placeId = $(this).closest('.place-id').data('place-id');
-    console.log(placeId)
+    var currentPlaceId = $(this).closest('.place-id').data('place-id');
+    console.log(currentPlaceId)
     $('#modal2').modal();
-  });
-/*
-$('#songModal').on('click', '#saveSong', function(el) {
-    console.log('saveSong clicked!');
-    var $modal = $('#songModal');
-    var $modalAlbumId = modal.data('album-id');
-    var $songNameField = $modal.find('#songName');
-    var $trackNumberField = $modal.find('#trackNumber');
-    console.log(modalAlbumId);
+  }); //WORKING
 
-    $.ajax({
-      method: 'POST',
-      url: 'api/albums/:album_id/songs',
-      data: modalAlbumId.val(),
-      success: newSongSuccess,
-      error: newSongError
-    })
-  });
-});
-*/
   //add place button
   $('#addPlace').on('click', function(target){
     target.preventDefault();
     var $modal1 = $('#modal1');
     var $placeNameField = $modal1.find('#place_name');
-
     var dataToPost = {
       name: $placeNameField.val()
-    };
-
+      };
     var testId = $modal1.data(testId);
-
     $.ajax({
       method: 'POST',
       url: 'api/neighborhoods/' + neighborhoodId + '/places',
@@ -128,35 +92,53 @@ $('#songModal').on('click', '#saveSong', function(el) {
       success: newPlaceSuccess,
       error: newPlaceError
     });
-  });
+  }); //WORKING
 
-  $('#editPlace').on('click', function(target){
-    target.preventDefault();
-    console.log('this serialized', $(this).serialize());
+// ​
+//   //edit place button
+//   $('#editPlace').on('click', function(target){
+//     target.preventDefault();
+//     console.log('this serialized', $(this).serialize());
+//     $.ajax({
+//       method: 'PUT',
+//       url: 'api/neighborhoods/'+neighborhoodId+'/places/'+placeId,
+//       data: $(this).serialize(),
+//       success: editPlaceSuccess,
+//       error: editPlaceError
+//     });
+//   });
+// }
+//
+
+  //Initialize delete place modal
+  $(".delete_place").click(function (){
+    console.log("Delete Button clicked!");
+    var currentPlaceId = $(this).closest('.place-id').data('place-id');
+    console.log(neighborhoodId + ", " + currentPlaceId);
+    var url = '/api/neighborhoods/' + neighborhoodId + '/places/' + currentPlaceId;
+    console.log('send DELETE ', url);
     $.ajax({
-      method: 'PUT',
-      url: 'api/neighborhoods/'+neighborhoodId+'/places/'+placeId,
-      data: $(this).serialize(),
-      success: editPlaceSuccess,
-      error: editPlaceError
+      method: 'DELETE',
+      url: url,
+      success: handlePlaceDeleteResponse
     });
-  });
+  }); //WORKING
 
+  function handlePlaceDeleteResponse(data) {
+  console.log('handleSongDeleteResponse got ', data);
+  var placeIdToDelete = data._id;
+  var $divToDelete = $('#' + placeIdToDelete);
+  console.log($divToDelete)
+  $divToDelete.remove();
+} //WORKING
+
+//   //Initialize edit place modal
+//   $("#edit_place").click(function(){
+//     console.log("Button clicked!");
+//     $('#modal2').modal();
+//   });
+//
 }
-
-
-//Mike's JS
-  // $('#neighborhood').on('click', '#neighborhood-id', function(event){
-  //   // $('.gifSelectionField2').empty();
-  //   console.log('i still know what you clicked on! ', this.src);
-  //   // var pickedGfHtml = templateGifChoice({ userChosenGif: this.src});
-  //   // $(".selected-gif").append(pickedGifHtml);
-  // })
-
-  //Initialize add place modal
-
-
-  //
 
 function onSuccess(json){
   allNeighborhoods = json;
@@ -172,10 +154,16 @@ function onError(){
 }
 
 function newPlaceSuccess(data){
-  console.log("new place success");
-  console.log("this is data: ", data);
-
-}
+  console.log("new place success", data)
+  var newPlaceSource = $('#place-template').html();
+  console.log(newPlaceSource);
+  var newPlaceTemplate = Handlebars.compile(newPlaceSource);
+  console.log('Hit new place template!')
+  var newPlaceHtml = newPlaceTemplate({ places : data});
+  console.log("New Place Html ", newPlaceHtml);
+  // $('#neighborhoodTarget').remove();
+  // render();
+} //NOT APPENDING DATA TO PAGE
 
 function newPlaceError(){
   console.log('new place error!');
