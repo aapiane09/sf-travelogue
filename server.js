@@ -55,7 +55,7 @@ app.get('/api/neighborhoods/:hoodId', controllers.neighborhoods.neighborhoods_sh
 app.get('/api/neighborhoods/:hoodId/places', controllers.places.index);
 app.post('/api/neighborhoods/:hoodId/places', controllers.places.create);
 app.get('/api/neighborhoods/:hoodId/places/:placeId', controllers.places.show);
-app.put('/api/neighborhoods/:hoodId/places/:placeId', controllers.places.update);
+app.patch('/api/neighborhoods/:hoodId/places/:placeId', controllers.places.update);
 app.delete('/api/neighborhoods/:hoodId/places/:placeId', controllers.places.destroy);
 
 

@@ -23,8 +23,8 @@
     <div class="container index">
       <div class="row">
         <div class="col s12">
-          <h1 id="title">SF Travelogue</h1>
-          <br><hr><br>
+          <h1 id="title" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click Here to Reselect Neighborhood">SF Travelogue</h1>
+          <hr><br>
 <!-- NEIGHBORHOOD CARD -->
           <div id="neighborhoodTarget">
             <script id="neighborhood-template" type="text/x-handlebars-template">
@@ -163,7 +163,7 @@
                              <!-- FORM STARTS HERE -->
 
                              <div class="row">
-                               <form id ="editPlaceForm" class="col s12" method="PUT" action="/api/neighborhoods/:hoodId/places/placeId">
+                               <form id ="editPlaceForm" class="col s12" method="PATCH" action="/api/neighborhoods/:hoodId/places/placeId">
                                  <div class="row">
                                    <div class="input-field col s6">
                                      <input placeholder="" id="place_name" type="text" class="validate">
@@ -173,13 +173,13 @@
                                    <div class="col s6">
                                      <div class="row">
                                        <div class="input-field col s12">
-                                          <select>
+                                          <select id="place_category">
                                             <option value="" disabled selected>Choose your option</option>
-                                            <option value="1">Restaurant</option>
+                                            <option value="Restaurant">Restaurant</option>
                                             <option value="2">School</option>
                                             <option value="3">Bar</option>
                                           </select>
-                                          <label>Category</label>
+                                          <label for="place_category">Category</label>
                                         </div>
                                      </div>
                                    </div>
@@ -187,16 +187,28 @@
                                  </div>
                                  <div class="row">
                                    <div class="input-field col s12">
-                                      <textarea id="textarea1" class="materialize-textarea"></textarea>
-                                      <label for="textarea1"><a href="#"></a>Address</label>
+                                      <textarea id="place_address" class="materialize-textarea"></textarea>
+                                      <label for="place_address"><a href="#"></a>Address</label>
                                    </div>
                                  </div>
                                  <div class="row">
                                    <div class="input-field col s12">
-                                     <textarea id="textarea1" class="materialize-textarea"></textarea>
-                                     <label for="textarea1">What is good?</label>
+                                     <textarea id="good_stuff" class="materialize-textarea"></textarea>
+                                     <label for="good_stuff">What is good?</label>
                                    </div>
                                  </div>
+                                 <div class="row">
+                                  <div class="input-field col s12">
+                                    <textarea id="opening_hour" class="materialize-textarea"></textarea>
+                                    <label for="opening_hour">Opening Hour: </label>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="input-field col s12">
+                                    <textarea id="closing_hour" class="materialize-textarea"></textarea>
+                                    <label for="closing_hour">Closing Hour: </label>
+                                  </div>
+                                </div>
                                </form>
                              </div>
                              <!-- FORM ENDS HERE -->
@@ -222,6 +234,7 @@
               <br>
               {{/each}}
             </script>
+
           </div> <!-- placesTarget -->
 
         </div> <!-- col s12 -->
