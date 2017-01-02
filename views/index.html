@@ -57,12 +57,7 @@
                                    <div class="col s7">
                                      <div class="row">
                                        <div class="col s12">
-                                         <select>
-                                           <option value="" disabled selected>Choose your neighborhood</option>
-                                           <option value="1">Mission</option>
-                                           <option value="2">Financial District</option>
-                                           <option value="3">Fishermans Wharf</option>
-                                         </select>
+
                                        </div>
                                      </div>
                                    </div>
@@ -142,7 +137,7 @@
                       <div class="center-align">
                         <a class="waves-effect waves-light btn edit_place" data-target="modal2" id="edit_place"><i class="material-icons left">mode_edit</i>Edit Place</a>
                         <!-- edit place modal starts here -->
-                        <div id="modal2" class="modal modal-fixed-footer">
+                        <div id="modal2" class="modal modal-fixed-footer" data-modal-place-id ={{this._id}}>
                            <div class="modal-content">
                              <div class="row">
                                <div class="col s12">
@@ -162,7 +157,7 @@
                              <!-- FORM STARTS HERE -->
 
                              <div class="row">
-                               <form id ="editPlaceForm" class="col s12" method="PUT" action="/api/neighborhoods/:hoodId/places/placeId">
+                               <form id ="editPlaceForm" class="col s12" method="PATCH" action="/api/neighborhoods/:hoodId/places/placeId">
                                  <div class="row">
                                    <div class="input-field col s6">
                                      <input placeholder="" id="place_name" type="text" class="validate">
@@ -186,14 +181,26 @@
                                  </div>
                                  <div class="row">
                                    <div class="input-field col s12">
-                                      <textarea id="textarea1" class="materialize-textarea"></textarea>
-                                      <label for="textarea1"><a href="#"></a>Address</label>
+                                      <textarea id="place_address" class="materialize-textarea"></textarea>
+                                      <label for="place_address"><a href="#"></a>Address</label>
                                    </div>
                                  </div>
                                  <div class="row">
                                    <div class="input-field col s12">
-                                     <textarea id="textarea1" class="materialize-textarea"></textarea>
-                                     <label for="textarea1">What is good?</label>
+                                     <textarea id="good_stuff" class="materialize-textarea"></textarea>
+                                     <label for="good_stuff">What is good?</label>
+                                   </div>
+                                 </div>
+                                 <div class="row">
+                                   <div class="input-field col s12">
+                                     <textarea id="opening_hour" class="materialize-textarea"></textarea>
+                                     <label for="opening_hour">Opening Hour: </label>
+                                   </div>
+                                 </div>
+                                 <div class="row">
+                                   <div class="input-field col s12">
+                                     <textarea id="closing_hour" class="materialize-textarea"></textarea>
+                                     <label for="closing_hour">Closing Hour: </label>
                                    </div>
                                  </div>
                                </form>
@@ -201,7 +208,7 @@
                              <!-- FORM ENDS HERE -->
                            </div>
                            <div class="modal-footer">
-                             <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="editPlace">Add</a>
+                             <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="editPlace" type ="submit">Save Changes</a>
                            </div>
                          </div>
                          <!-- MODAL ENDS HERE -->
