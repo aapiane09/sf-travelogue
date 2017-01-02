@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <title>SF TRAVELOGUE</title>
+      <!-- CSS Stylesheets-->
+      <!-- Google Fonts -->
+      <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+      <!-- Materialize -->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+      <link rel="stylesheet" href="/styles/styles.css">
+      <!-- JavaScript Libraries  -->
+      <!-- jQuery -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <!-- Materialize (JS) -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+      <!-- Handlebars -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+      <script src="scripts/app.js"></script>
+  </head>
+  <body>
+    <div class="container index">
+      <div class="row">
+        <div class="col s12">
+          <h1 id="title">SF Travelogue</h1>
+          <hr><br>
+<!-- NEIGHBORHOOD CARD -->
+          <div id="neighborhoodTarget">
+            <script id="neighborhood-template" type="text/x-handlebars-template">
+              <div class="card-panel hoverable">
+                <div class="row" class="hood" id="neighborhood">
+                  <div class="neighborhood-id" data-neighborhood-id="{{neighborhood._id}}">
+                    <div class="hood-container row">
+                      <div class="col s7">
+                        <h2><i class="medium material-icons">info</i>{{neighborhood.name}}</h2>
+                        <div class="description">
+                          <h4>Description</h4>
+                          <br>
+                          <p>{{neighborhood.description}}</p>
+                          <br><br>
+                        </div> <!-- description -->
+                      </div> <!-- col s7 -->
+                      <div class="col s5 center-align">
+                        <img id="link" src="{{neighborhood.imageUrl}}" class="images-500 center-align" alt="">
+                        <br><br>
+                        <!-- MODAL STARTS HERE -->
+                        <a class="waves-effect waves-light btn" id="openPlaceModal" data-target="modal1">Add Place</a>
+                        <div id="modal1" class="modal modal-fixed-footer">
+                           <div class="modal-content">
+                             <div class="row">
+                               <div class="col s12">
+                                 <div class="row">
+                                   <div class="col s5">
+                                     <h4>Add Place</h4>
+                                   </div>
+                                 </div>
+                               </div>
+                             </div>
+                             <!-- FORM STARTS HERE -->
+
+                             <div class="row">
+                               <form id ="newPlaceForm" class="col s12" method="POST" action="/api/neighborhoods/:hoodId/places">
+                                 <div class="row">
+                                   <div class="input-field col s6">
+                                     <input placeholder="" id="place_name" type="text" class="validate">
+                                     <label for="first_name">Place Name</label>
+                                   </div>
+
+                                   <div class="col s6">
+                                     <div class="row">
+                                       <div class="input-field col s12">
+                                          <select>
+                                            <option value="" disabled selected>Choose your option</option>
+                                            <option value="1">Restaurant</option>
+                                            <option value="2">School</option>
+                                            <option value="3">Bar</option>
+                                          </select>
+                                          <label>Category</label>
+                                        </div>
+                                     </div>
+                                   </div>
+
+                                 </div>
+                                 <div class="row">
+                                   <div class="input-field col s12">
+                                      <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                      <label for="textarea1"><a href="#"></a>Address</label>
+                                   </div>
+                                 </div>
+                                 <div class="row">
+                                   <div class="input-field col s12">
+                                     <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                     <label for="textarea1">What is good?</label>
+                                   </div>
+                                 </div>
+                               </form>
+                             </div>
+                             <!-- FORM ENDS HERE -->
+                           </div>
+                           <div class="modal-footer">
+                             <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="addPlace">Add</a>
+                           </div>
+                         </div>
+                         <!-- MODAL ENDS HERE -->
+                      </div> <!-- col s5 -->
+                    </div> <!-- hood-container -->
+                  </div> <!-- data-neighborhood-id -->
+                </div> <!-- neighborhood -->
+              </div> <!-- card-panel -->
+              <br><br>
+            </script>
+          </div> <!-- neighborhoodTarget -->
+<!--  PLACES CARD  -->
+          <div id="placesTarget">
+            <script id="place-template" type="text/x-handlebars-template">
+              {{#each neighborhood.places}}
+              <div class="card-panel hoverable z-depth-5 place" id={{this._id}}>
+                <div class="location-container row" id="place">
+                  <div class="place-id" data-place-id="{{this._id}}">
+                    <div class="col s7">
+                      <h3>{{this.name}}</h3>
+                      <div class="description">
+                        <p>
+                          {{this.address}}<br>
+                          San Francisco, CA<br>
+                          Hours: {{this.openingHour}} to {{this.closingHour}}<br>
+                        </p>
+                      </div> <!-- description -->
+                      <br>
+                      <div class="center-align">
+                        <a class="waves-effect waves-light btn edit_place" data-target="modal2" id="edit_place"><i class="material-icons left">mode_edit</i>Edit Place</a>
+                        <!-- edit place modal starts here -->
+                        <div id="modal2" class="modal modal-fixed-footer">
+                           <div class="modal-content">
+                             <div class="row">
+                               <div class="col s12">
+                                 <div class="row">
+                                   <div class="col s5">
+                                     <h4>Edit Place</h4>
+                                   </div>
+                                   <div class="col s7">
+                                     <div class="row">
+                                       <div class="col s12">
+
+                                       </div>
+                                     </div>
+                                   </div>
+                                 </div>
+                               </div>
+                             </div>
+                             <!-- FORM STARTS HERE -->
+
+                             <div class="row">
+                               <form id ="editPlaceForm" class="col s12" method="PATCH" action="/api/neighborhoods/:hoodId/places/placeId">
+                                 <div class="row">
+                                   <div class="input-field col s6">
+                                     <input placeholder="" id="place_name" type="text" class="validate">
+                                     <label for="first_name">Place Name</label>
+                                   </div>
+
+                                   <div class="col s6">
+                                     <div class="row">
+                                       <div class="input-field col s12">
+                                          <select id="place_category">
+                                            <option value="" disabled selected>Choose your option</option>
+                                            <option value="Restaurant">Restaurant</option>
+                                            <option value="2">School</option>
+                                            <option value="3">Bar</option>
+                                          </select>
+                                          <label for="place_category">Category</label>
+                                        </div>
+                                     </div>
+                                   </div>
+
+                                 </div>
+                                 <div class="row">
+                                   <div class="input-field col s12">
+                                      <textarea id="place_address" class="materialize-textarea"></textarea>
+                                      <label for="place_address"><a href="#"></a>Address</label>
+                                   </div>
+                                 </div>
+                                 <div class="row">
+                                   <div class="input-field col s12">
+                                     <textarea id="good_stuff" class="materialize-textarea"></textarea>
+                                     <label for="good_stuff">What is good?</label>
+                                   </div>
+                                 </div>
+                                 <div class="row">
+                                  <div class="input-field col s12">
+                                    <textarea id="opening_hour" class="materialize-textarea"></textarea>
+                                    <label for="opening_hour">Opening Hour: </label>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="input-field col s12">
+                                    <textarea id="closing_hour" class="materialize-textarea"></textarea>
+                                    <label for="closing_hour">Closing Hour: </label>
+                                  </div>
+                                </div>
+                               </form>
+                             </div>
+                             <!-- FORM ENDS HERE -->
+                           </div>
+                           <div class="modal-footer">
+                             <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="editPlace">Edit Place</a>
+                           </div>
+                         </div>
+                         <!-- MODAL ENDS HERE -->
+                        <a class="waves-effect waves-light btn delete_place"><i class="material-icons right">delete</i>Delete Place</a>
+                      </div>
+                    </div> <!-- col s7 -->
+                    <div class="col s5">
+                      <div class="description">
+                        <p>{{this.goodStuff}}</p>
+                        <p>{{this._id}}</p>
+                        <br>
+                      </div> <!-- description-->
+                    </div> <!-- col s5 -->
+                  </div> <!-- data-place-id -->
+                </div> <!-- location-container row-->
+              </div> <!-- card panel -->
+              <br>
+              {{/each}}
+            </script>
+
+          </div> <!-- placesTarget -->
+
+        </div> <!-- col s12 -->
+      </div> <!-- row -->
+    </div> <!-- container index -->
+  </body>
+
+</html>

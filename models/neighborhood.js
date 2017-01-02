@@ -1,10 +1,12 @@
 var mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+  Schema = mongoose.Schema,
+  Place = require("./place.js");
+
 
 var NeighborhoodSchema = new Schema({
   name: String,
   description: String,
-  places: [],
+  places: [Place.schema],
   imageUrl: String
 });
 

@@ -35,15 +35,28 @@ app.use(express.static('public'));
  */
 
 app.get('/', function homepage(req, res) {
-  res.send("The server is up and running");
-  res.sendFile('/views/index.html', {root: __dirname});
+  // res.send("The server is up and running");
+  res.sendFile('./views/index.html', {root: __dirname});
 });
+
+app.get('/neighborhoods/', function neighborhoods(req, res) {
+  // res.send("The server is up and running");
+  res.sendFile('./views/neighborhoods.html', {root: __dirname});
+});
+
 
 /*
  * JSON API Endpoints
  */
 
 app.get('/api', controllers.api.index);
+app.get('/api/neighborhoods', controllers.neighborhoods.neighborhoods_index);
+app.get('/api/neighborhoods/:hoodId', controllers.neighborhoods.neighborhoods_show);
+app.get('/api/neighborhoods/:hoodId/places', controllers.places.index);
+app.post('/api/neighborhoods/:hoodId/places', controllers.places.create);
+app.get('/api/neighborhoods/:hoodId/places/:placeId', controllers.places.show);
+app.patch('/api/neighborhoods/:hoodId/places/:placeId', controllers.places.update);
+app.delete('/api/neighborhoods/:hoodId/places/:placeId', controllers.places.destroy);
 
 
 // listen on the port that Heroku prescribes (process.env.PORT) OR port 3000
