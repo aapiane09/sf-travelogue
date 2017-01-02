@@ -1,4 +1,4 @@
-# SF-Travelogue
+# [SF-Travelogue] (https://sf-travelogue.herokuapp.com/)
 SF-Travelogue allows users to search for interesting places in San Francisco neighborhoods.
 
 ## Motivation
@@ -12,7 +12,7 @@ The motivation for this project is to allow newcomers to San Francisco to have a
 * MongoDB
 * Mongoose
 * Google Maps API (stretch goal)
-* Weather Underground API(stretch goal)
+* Weather Underground API (stretch goal)
 
 ## RESTful Routes(Endpoints)
 
