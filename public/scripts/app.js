@@ -15,10 +15,6 @@ $(document).ready(function(){
     location.reload();
   });
 
-  $(document).ready(function(){
-  $('#title').tooltip({delay: 50});
-});
-
   //Neighborhoods Handlebars Template
   $neighborhoodsList = $('#neighborhoodTarget');
   var source = $('#neighborhood-template').html();

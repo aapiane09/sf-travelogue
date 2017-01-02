@@ -23,7 +23,7 @@
     <div class="container index">
       <div class="row">
         <div class="col s12">
-          <h1 id="title" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click Here to Reselect Neighborhood">SF Travelogue</h1>
+          <h1 id="title">SF Travelogue</h1>
           <hr><br>
 <!-- NEIGHBORHOOD CARD -->
           <div id="neighborhoodTarget">
@@ -33,7 +33,7 @@
                   <div class="neighborhood-id" data-neighborhood-id="{{neighborhood._id}}">
                     <div class="hood-container row">
                       <div class="col s7">
-                        <h1><i class="medium material-icons">info</i>{{neighborhood.name}}</h1>
+                        <h2><i class="medium material-icons">info</i>{{neighborhood.name}}</h2>
                         <div class="description">
                           <h4>Description</h4>
                           <br>
@@ -53,18 +53,6 @@
                                  <div class="row">
                                    <div class="col s5">
                                      <h4>Add Place</h4>
-                                   </div>
-                                   <div class="col s7">
-                                     <div class="row">
-                                       <div class="col s12">
-                                         <select>
-                                           <option value="" disabled selected>Choose your neighborhood</option>
-                                           <option value="1">Mission</option>
-                                           <option value="2">Financial District</option>
-                                           <option value="3">Fishermans Wharf</option>
-                                         </select>
-                                       </div>
-                                     </div>
                                    </div>
                                  </div>
                                </div>
@@ -139,6 +127,7 @@
                           Hours: {{this.openingHour}} to {{this.closingHour}}<br>
                         </p>
                       </div> <!-- description -->
+                      <br>
                       <div class="center-align">
                         <a class="waves-effect waves-light btn edit_place" data-target="modal2" id="edit_place"><i class="material-icons left">mode_edit</i>Edit Place</a>
                         <!-- edit place modal starts here -->
