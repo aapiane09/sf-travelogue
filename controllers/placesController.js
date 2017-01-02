@@ -51,6 +51,8 @@ function update(req, res) {
       res.status(500).send('database error');
     }else{
       var foundPlace = foundNeighborhood.places.id(placeId);
+      console.log(foundPlace, "this is the foundplace");
+      console.log(req.body.name, " this is the req.body.name");
       foundPlace.name = req.body.name || foundPlace.name;
       foundPlace.address = req.body.address || foundPlace.address;
       foundPlace.category = req.body.category || foundPlace.category;
@@ -58,7 +60,7 @@ function update(req, res) {
       foundPlace.openingHour = req.body.openingHour || foundPlace.openingHour;
       foundPlace.closingHour = req.body.closingHour || foundPlace.closingHour;
 
-      foundPlace.save(function(err, savedPlace){
+      foundNeighborhood.save(function(err, saved){
         if(err){
           res.status(500).send('database error');
         }else{
