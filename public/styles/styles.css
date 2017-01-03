@@ -14,9 +14,14 @@ body {
   height: 100%;
 }
 
-h1, h2 {
+h1, h2, h5 {
   text-align: center;
   font-family: Pacifico, cursive;
+}
+
+h3{
+    font-family: 'Kaushan Script', cursive;
+    text-align: center;
 }
 
 .card-panel {
@@ -26,12 +31,21 @@ h1, h2 {
   border-radius: 5px;
 }
 
-.description {
+.description, .placedescription {
   border: 1px solid black;
   background: url("/images/sayagata-400px/sayagata-400px.png");
   background-size: cover;
   border-radius: 2px;
   padding: 0px 10px;
+}
+
+.description {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1.25em;
+}
+
+.placedescription {
+  font-family: 'Permanent Marker', cursive;
 }
 
 #openPlaceModal, #googleMaps {
