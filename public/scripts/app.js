@@ -71,6 +71,7 @@ $(document).ready(function(){
       initializeCrud();
     //Initializes Dropdown in Modals
       $('select').material_select();
+      $('#openPlaceModal').removeClass('hide');
     }); //on click
   }; //render
 
