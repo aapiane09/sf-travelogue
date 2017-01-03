@@ -6,6 +6,7 @@ var neighborhoodId;
 var $placeList;
 var placeTemplate;
 var placeToUpdateId;
+var currentNeighborhoodId;
 
 $(document).ready(function(){
   console.log("DOM Ready!");
@@ -36,7 +37,6 @@ $(document).ready(function(){
 
   function onSuccess(json){
     allNeighborhoods = json;
-    console.log("allNeighborhoods ", allNeighborhoods);
     render();
   }
 
@@ -45,7 +45,6 @@ $(document).ready(function(){
   }
 
   function render(){
-    console.log('render function');
     var neighborhoodHtml;
     var placeHtml;
     allNeighborhoods.forEach(function(json){
@@ -55,7 +54,6 @@ $(document).ready(function(){
 
     $('#neighborhoodTarget').on('click','.neighborhood-id', function(e){
       neighborhoodId = $(this).data('neighborhood-id');
-      console.log(neighborhoodId);
       $('#neighborhoodTarget').empty();
       allNeighborhoods.forEach(function(json){
         neighborhoodHtml = template({ neighborhood: json });
@@ -67,7 +65,6 @@ $(document).ready(function(){
     }) //forEach
     //Turns off event listeners for choosing neighborhoods
       $('#neighborhoodTarget').off('click', '.neighborhood-id');
-      console.log("after forEach");
       initializeCrud();
     //Initializes Dropdown in Modals
       $('select').material_select();
@@ -76,10 +73,8 @@ $(document).ready(function(){
   }; //render
 
   function initializeCrud(){
-    console.log("initializeCrud")
     //when the add place button is clicked, display the modal
     $("#openPlaceModal").click(function (){
-      console.log("Button open place modal clicked!");
       currentNeighborhoodId = $(this).closest('.Neighborhood').data('neighborhood-id');
       $('#modal1').data('neighborhood-id', currentNeighborhoodId);
       $('#modal1').modal();//display the modal!
@@ -87,14 +82,13 @@ $(document).ready(function(){
 
     //Initialize edit place modal
     $(".edit_place").click(function(){
-      console.log("Button open edit_place clicked!");
       placeToUpdateId = $(this).closest('.place-id').data('place-id');
-      console.log("Button initialized, clicked on " + placeToUpdateId)
       $('#modal2').modal();
     }); //WORKING
 
 //ADD PLACE
     $('#addPlace').on('click', function(target){
+      console.log( currentNeighborhoodId, neighborhoodId);
       target.preventDefault();
       var $modal1 = $('#modal1');
       var $placeNameField = $modal1.find('#place_name');
@@ -113,15 +107,29 @@ $(document).ready(function(){
 
 
     function newPlaceSuccess(data){
-      console.log("new place success", data)
-      var newPlaceSource = $('#place-template').html();
-      console.log(newPlaceSource);
-      var newPlaceTemplate = Handlebars.compile(newPlaceSource);
-      console.log('Hit new place template!')
-      var newPlaceHtml = newPlaceTemplate({ places : data});
-      console.log("New Place Html ", newPlaceHtml);
-      // $('#neighborhoodTarget').remove();
-      // render();
+      console.log("new place success", data);
+      console.log("nHoodId inside newPlaceSuccess ", neighborhoodId);
+      allNeighborhoods.forEach(function (neighborhood){
+        if(neighborhood._id === neighborhoodId){
+          neighborhood.places.push(data);
+          console.log("found neighborhood places ", neighborhood.places);
+        }
+      });
+
+      // var newPlaceSource = $('#place-template').html();
+      // console.log(newPlaceSource);
+      // var newPlaceTemplate = Handlebars.compile(newPlaceSource);
+      // console.log('Hit new place template!', newPlaceTemplate)
+      // var newPlaceHtml = newPlaceTemplate({ neighborhood : data});
+      // console.log("new Place Html", newPlaceHtml)
+      // allNeighborhoods.forEach(function neighborhood){
+      //   neighborhood.places.forEach(function(place){
+      //     var newPlaceHtml = newPlaceTemplate({place: data});
+      //     console.log("New Place Html ", newPlaceHtml);
+      //
+      //   })
+      // }
+      // var newPlaceHtml = newPlaceTemplate(data);
     } //NOT APPENDING DATA TO PAGE
 
     function newPlaceError(){
@@ -171,10 +179,8 @@ $(document).ready(function(){
 
 //DELETE PLACE
     $(".delete_place").click(function (){
-      console.log("Delete Button clicked!");
-      console.log(neighborhoodId + ", " + currentPlaceId);
+      var currentPlaceId = $(this).closest('.place-id').data('place-id');
       var url = '/api/neighborhoods/' + neighborhoodId + '/places/' + currentPlaceId;
-      console.log('send DELETE ', url);
       $.ajax({
         method: 'DELETE',
         url: url,
@@ -185,10 +191,7 @@ $(document).ready(function(){
   }
 
   function handlePlaceDeleteResponse(data) {
-    console.log('handleSongDeleteResponse got ', data);
-    var placeIdToDelete = data._id;
-    var $divToDelete = $('#' + placeIdToDelete);
-    console.log($divToDelete)
+    var $divToDelete = $('#' + data._id);
     $divToDelete.remove();
   } //WORKING
 

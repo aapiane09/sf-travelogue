@@ -36,6 +36,7 @@
                         <div class="description">
                           <!-- <h4>Description</h4> -->
                           <p>{{neighborhood.description}}</p>
+                          {{neighborhood._id}}
                         </div> <!-- description -->
                         <br>
                         <!-- MODAL STARTS HERE -->
@@ -119,6 +120,7 @@
                       <h3>{{this.name}}</h3>
                       <div class="placedescription">
                         <p>{{this.goodStuff}}</p>
+                        {{this._id}}
                         <br>
                       </div> <!-- description -->
                       <br>
@@ -224,9 +226,7 @@
               <br>
               {{/each}}
             </script>
-
           </div> <!-- placesTarget -->
-
         </div> <!-- col s12 -->
       </div> <!-- row -->
     </div> <!-- container index -->
