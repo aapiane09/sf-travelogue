@@ -96,10 +96,20 @@ $(document).ready(function(){
       console.log( currentNeighborhoodId, neighborhoodId);
       target.preventDefault();
       var $modal1 = $('#modal1');
-      var $placeNameField = $modal1.find('#place_name');
-      var dataToPost = {
-        name: $placeNameField.val()
-        };
+          var $placeNameField = $modal1.find('#place_name');
+          var $placeAddressField = $modal1.find('#place_address');
+          var $placeCategoryField = $modal1.find('#place_category');
+          var $placeGoodStuffField = $modal1.find('#good_stuff');
+          var $placeOpeningHourField = $modal1.find('#opening_hour');
+          var $placeClosingHourField = $modal1.find('#closing_hour');
+          var dataToPost = {
+            name: $placeNameField.val(),
+            address: $placeAddressField.val(),
+            category: $placeCategoryField.val(),
+            goodStuff: $placeGoodStuffField.val(),
+            openingHour: $placeOpeningHourField.val(),
+            closingHour: $placeClosingHourField.val()
+            };
       var testId = $modal1.data(testId);
       $.ajax({
         method: 'POST',
@@ -121,7 +131,7 @@ $(document).ready(function(){
         }
       });
       renderSpecificNeighborhood();
-    } //NOT APPENDING DATA TO PAGE
+    } //WORKING
 
     function newPlaceError(){
       console.log('new place error!');
