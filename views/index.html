@@ -32,19 +32,15 @@
                 <div class="row" class="hood" id="neighborhood">
                   <div class="neighborhood-id" data-neighborhood-id="{{neighborhood._id}}">
                     <div class="hood-container row">
-                      <div class="col s7">
+                      <div class="col s7 center-align">
                         <h2>-{{neighborhood.name}}-</h2>
-
                         <div class="description">
                           <!-- <h4>Description</h4> -->
                           <br>
                           <p>{{neighborhood.description}}</p>
                           <br>
                         </div> <!-- description -->
-                      </div> <!-- col s7 -->
-                      <div class="col s5 center-align">
-                        <img id="link" src="{{neighborhood.imageUrl}}" class="images-500 center-align" alt="">
-                        <br><br>
+                        <br>
                         <!-- MODAL STARTS HERE -->
                         <a class="waves-effect waves-light btn hide" id="openPlaceModal" data-target="modal1">Add Place</a>
                         <div id="modal1" class="modal modal-fixed-footer">
@@ -59,7 +55,6 @@
                                </div>
                              </div>
                              <!-- FORM STARTS HERE -->
-
                              <div class="row">
                                <form id ="newPlaceForm" class="col s12" method="POST" action="/api/neighborhoods/:hoodId/places">
                                  <div class="row">
@@ -67,7 +62,6 @@
                                      <input placeholder="" id="place_name" type="text" class="validate">
                                      <label for="first_name">Place Name</label>
                                    </div>
-
                                    <div class="col s6">
                                      <div class="row">
                                        <div class="input-field col s12">
@@ -104,6 +98,11 @@
                            </div>
                          </div>
                          <!-- MODAL ENDS HERE -->
+                      </div> <!-- col s7 -->
+                      <div class="col s5">
+                        <br><br><br>
+                        <img id="link" src="{{neighborhood.imageUrl}}" class="images-500 center-align" alt="">
+                        <br><br>
                       </div> <!-- col s5 -->
                     </div> <!-- hood-container -->
                   </div> <!-- data-neighborhood-id -->
@@ -122,11 +121,8 @@
                     <div class="col s7">
                       <h3>{{this.name}}</h3>
                       <div class="description">
-                        <p>
-                          {{this.address}}<br>
-                          San Francisco, CA<br>
-                          Hours: {{this.openingHour}} to {{this.closingHour}}<br>
-                        </p>
+                        <p>{{this.goodStuff}}</p>
+                        <br>
                       </div> <!-- description -->
                       <br>
                       <div class="center-align">
@@ -213,10 +209,17 @@
                     </div> <!-- col s7 -->
                     <div class="col s5">
                       <div class="description">
-                        <p>{{this.goodStuff}}</p>
-                        <p>{{this._id}}</p>
-                        <br>
+                        <h5>Address</h5>
+                        <p>
+                          {{this.address}}<br>
+                          San Francisco, CA<br>
+                          Hours: {{this.openingHour}} to {{this.closingHour}}<br>
+                        </p>
                       </div> <!-- description-->
+                      <br><br>
+                      <div class="center-align">
+                        <a href="https://www.google.com/maps/dir/here/{{this.address}}+San+Francisco,+CA" target="_blank" class="waves-effect waves-light btn-large" id="googleMaps"><i class="material-icons left">navigation</i>Directions</a>
+                      </div>
                     </div> <!-- col s5 -->
                   </div> <!-- data-place-id -->
                 </div> <!-- location-container row-->
