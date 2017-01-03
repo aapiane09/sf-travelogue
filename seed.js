@@ -11,7 +11,9 @@ neighborhoodsList.push({
         category: "Education",
         goodStuff: "Master new skills in design, marketing, technology, and data — online or at our campuses around the world.",
         openingHour: "8:30 AM",
-        closingHour: "10:00 PM"
+        closingHour: "10:00 PM",
+        lat: 37.7908769,
+        lng:-122.4034906
     }],
     imageUrl: "images/fidi.jpg"
 });
@@ -24,7 +26,9 @@ neighborhoodsList.push({
         category: "Shopping",
         goodStuff: "Bustling bayside pier featuring scenic views, sea-lion sightings, eateries, shops & entertainment.",
         openingHour: "10:00 AM",
-        closingHour: "10:00 PM"
+        closingHour: "10:00 PM",
+        lat:37.8086772,
+        lng:-122.412015
     }],
     imageUrl: "images/fishermanswharf.jpg"
 });
@@ -37,7 +41,9 @@ neighborhoodsList.push({
         category: "Restaurants",
         goodStuff: "Meat, seafood & vegetarian curries, plus tandoori & more in a simple, tiled space.",
         openingHour: "11:30 AM",
-        closingHour: "10:00 PM"
+        closingHour: "10:00 PM",
+        lat: 37.7646973,
+        lng:-122.4235537
     }],
     imageUrl: "images/dolorespark.jpg"
 });
@@ -50,7 +56,9 @@ neighborhoodsList.push({
         category: "Grocery Store",
         goodStuff: "Japanese supermarket with vegetables, meat, fish & sushi, dry goods & a bakery.",
         openingHour: "10:00 AM",
-        closingHour: "8:00 PM"
+        closingHour: "8:00 PM",
+        lat:37.7856183,
+        lng:-122.4328314
     }],
     imageUrl: "images/japantown.jpg"
 });
@@ -63,8 +71,31 @@ neighborhoodsList.push({
         category: "Entertainment",
         goodStuff: "The Castro Theatre is a popular San Francisco movie palace which became San Francisco Historic Landmark #100 in September 1976.",
         openingHour: "N/A",
-        closingHour: "N/A"
-    }],
+        closingHour: "N/A",
+        lat: 37.7620375,
+        lng:37.7620375
+    },
+    {
+        name: "Tartine Bakery",
+        address: "600 Guerrero Street",
+        category: "Bakery",
+        goodStuff: "Probably the best French bakery in town.",
+        openingHour: "8:00 AM",
+        closingHour: "7:00 PM",
+        lat:37.7614226,
+        lng:-122.4262978
+    },
+    {
+        name: "Lookout",
+        address: "3600 16th Street",
+        category: "Bar",
+        goodStuff: "This huge spot on 16th St houses one of SF's best-known gay bars. With great outdoor space",
+        openingHour: "4:00 PM",
+        closingHour: "10:00 PM",
+        lat:37.7643844,
+        lng:-122.4355125
+    }
+  ],
     imageUrl: "images/castro.jpg"
 });
 

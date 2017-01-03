@@ -13,6 +13,8 @@
       <!-- JavaScript Libraries  -->
       <!-- jQuery -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <!-- Google Map API -->
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg"></script>
       <!-- Materialize (JS) -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
       <!-- Handlebars -->
@@ -23,8 +25,14 @@
     <div class="container index">
       <div class="row">
         <div class="col s12">
-          <a href="#"><h1>SF Travelogue</h1></a>
+          <h1 id="title" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click Here to Reselect Neighborhood">SF Travelogue</h1>
           <br><hr><br>
+          <div class="card-panel hoverable">
+            <div class="row" class="hood" id="neighborhood">
+              <div id="map">
+              </div>
+            </div>
+          </div>
 <!-- NEIGHBORHOOD CARD -->
           <div id="neighborhoodTarget">
             <script id="neighborhood-template" type="text/x-handlebars-template">
@@ -77,13 +85,13 @@
                                    <div class="col s6">
                                      <div class="row">
                                        <div class="input-field col s12">
-                                          <select>
+                                          <select id="place_category">
                                             <option value="" disabled selected>Choose your option</option>
                                             <option value="1">Restaurant</option>
                                             <option value="2">School</option>
                                             <option value="3">Bar</option>
                                           </select>
-                                          <label>Category</label>
+                                          <label for="place_category">Category</label>
                                         </div>
                                      </div>
                                    </div>
@@ -179,13 +187,13 @@
                                    <div class="col s6">
                                      <div class="row">
                                        <div class="input-field col s12">
-                                          <select>
+                                          <select id="place_category">
                                             <option value="" disabled selected>Choose your option</option>
-                                            <option value="1">Restaurant</option>
-                                            <option value="2">School</option>
-                                            <option value="3">Bar</option>
+                                            <option value="restaurant">Restaurant</option>
+                                            <option value="school">School</option>
+                                            <option value="bar">Bar</option>
                                           </select>
-                                          <label>Category</label>
+                                          <label for="place_category">Category</label>
                                         </div>
                                      </div>
                                    </div>
@@ -234,6 +242,8 @@
                         <br>
                       </div> <!-- description-->
                     </div> <!-- col s5 -->
+                    <div class="col s5" id="map">
+                    </div>
                   </div> <!-- data-place-id -->
                 </div> <!-- location-container row-->
               </div> <!-- card panel -->

@@ -7,7 +7,9 @@ var PlaceSchema = new Schema({
   category: String,
   goodStuff: String,
   openingHour: String,
-  closingHour: String
+  closingHour: String,
+  lat: Number,
+  lng: Number
   //stretch goals
   // isOpen: Boolean,
   // imageUrl: String
