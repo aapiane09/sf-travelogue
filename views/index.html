@@ -23,6 +23,22 @@
       <div class="row">
         <div class="col s12">
           <h1 id="title">SF Travelogue</h1>
+          <br>
+          <div id="remove">
+            <hr><br>
+            <div class="row">
+              <div class="col s10 offset-s1">
+                <div class="card blue-grey darken-1">
+                  <div class="card-content white-text center-align">
+                    <p><i>The neighborhoods of San Francisco are unique and fascinating.
+                      Whether moving to the city or just trying to get to know its most unique areas,
+                      the San Francisco Travelogue highlights some of the hotspots particular to each.
+                      <br>Click on one of the neighborhoods below to find out more!</i></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <hr><br>
 <!-- NEIGHBORHOOD CARD -->
           <div id="neighborhoodTarget">
@@ -56,7 +72,7 @@
                                <form id ="newPlaceForm" class="col s12" method="POST" action="/api/neighborhoods/:hoodId/places">
                                  <div class="row">
                                    <div class="input-field col s6">
-                                     <input placeholder="" id="place_name" type="text" class="validate">
+                                     <input id="place_name" type="text" class="validate">
                                      <label for="first_name">Place Name</label>
                                    </div>
                                    <div class="col s6">
@@ -83,7 +99,17 @@
                                  <div class="row">
                                    <div class="input-field col s12">
                                      <textarea id="textarea1" class="materialize-textarea"></textarea>
-                                     <label for="textarea1">What is good?</label>
+                                     <label for="textarea1">What's good about this place?</label>
+                                   </div>
+                                 </div>
+                                 <div class="row">
+                                   <div class="input-field col s6">
+                                     <input id="opening_hour" type="text" class="validate"></input>
+                                     <label for="opening_hour">Opens at: </label>
+                                   </div>
+                                   <div class="input-field col s6">
+                                     <input id="closing_hour" type="text" class="validate"></input>
+                                     <label for="closing_hour">Closes at: </label>
                                    </div>
                                  </div>
                                </form>
@@ -181,17 +207,15 @@
                                    </div>
                                  </div>
                                  <div class="row">
-                                  <div class="input-field col s12">
-                                    <textarea id="opening_hour" class="materialize-textarea"></textarea>
-                                    <label for="opening_hour">Opening Hour: </label>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="input-field col s12">
-                                    <textarea id="closing_hour" class="materialize-textarea"></textarea>
-                                    <label for="closing_hour">Closing Hour: </label>
-                                  </div>
-                                </div>
+                                   <div class="input-field col s6">
+                                     <input id="opening_hour" type="text" class="validate"></input>
+                                     <label for="opening_hour">Opens at: </label>
+                                   </div>
+                                   <div class="input-field col s6">
+                                     <input id="closing_hour" type="text" class="validate"></input>
+                                     <label for="closing_hour">Closes at: </label>
+                                   </div>
+                                 </div>
                                </form>
                              </div>
                              <!-- FORM ENDS HERE -->

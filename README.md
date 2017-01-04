@@ -11,8 +11,7 @@ The motivation for this project is to allow newcomers to San Francisco to have a
 * Express
 * MongoDB
 * Mongoose
-* Google Maps API (stretch goal)
-* Weather Underground API (stretch goal)
+* jQuery
 
 ## RESTful Routes(Endpoints)
 
@@ -26,3 +25,32 @@ SF-Travelogue API provides the following JSON endpoints:
 * ```PUT /api/neighborhoods/:hoodId/places/:placeId``` Updates one place attributes
 * ```PATCH /api/neighborhoods/:hoodId/places/:placeId``` Updates one place attributes (research?)
 * ```DELETE /api/neighborhoods/:hoodId/places/:placeId``` Delete one specific place from a neighborhood
+
+## Code We Are Proud Of
+
+```
+<div class="center-align">
+  <a href="https://www.google.com/maps/dir/here/{{this.address}}+San+Francisco,+CA" target="_blank" class="waves-effect waves-light btn-large" id="googleMaps"><i class="material-icons left">navigation</i>Directions</a>
+</div>
+```
+```
+function editPlaceSuccess(data){
+  $('#newPlaceForm input').val('');
+
+  allNeighborhoods.forEach(function(neighborhood){
+    if(neighborhood._id === neighborhoodId){
+      neighborhood.places.forEach(function (place, i){
+        if(place._id === placeToUpdateId){
+          neighborhood.places.splice(i,1,data);
+        }
+      });
+    }
+  });
+
+  renderSpecificNeighborhood();
+}
+```
+##Screen Shots
+
+![alt text](public/images/neighborhoodCard.png "neighborhood card")
+![alt text](public/images/placeCard.png "place card")
