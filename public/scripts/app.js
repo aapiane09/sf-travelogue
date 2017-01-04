@@ -177,6 +177,17 @@ function initializeCrud(){
   function handlePlaceDeleteResponse(data) {
     console.log('handleSongDeleteResponse got ', data);
     var placeIdToDelete = data._id;
+    allNeighborhoods.forEach(function(neighborhood){
+      if(neighborhood._id === neighborhoodId){
+        neighborhood.places.forEach(function (place, i){
+          if(place._id === placeIdToDelete){
+            neighborhood.places.splice(i,1);
+          }
+        });
+        console.log(neighborhood.places, "this is neighborhood after splice");
+      }
+    });
+
     var $divToDelete = $('#' + placeIdToDelete);
     console.log($divToDelete)
     $divToDelete.remove();
@@ -199,7 +210,6 @@ function onError(){
 }
 
 function newPlaceSuccess(data){
-
   allNeighborhoods.forEach(function(neighborhood){
     if(neighborhood._id === neighborhoodId){
       neighborhood.places.push(data);
@@ -215,10 +225,18 @@ function newPlaceError(){
 }
 
 function editPlaceSuccess(data){
-  console.log("place  id to update", placeToUpdateId);
   $('#newPlaceForm input').val('');
-  console.log('edit form hit');
-  console.log(data, " this is data");
+  allNeighborhoods.forEach(function(neighborhood){
+    if(neighborhood._id === neighborhoodId){
+      neighborhood.places.forEach(function (place, i){
+        if(place._id === placeToUpdateId){
+          neighborhood.places.splice(i,1,data);
+        }
+      });
+      console.log(neighborhood.places, "this is neighborhood after splice");
+    }
+  });
+  renderSpecificNeighborhood();
 }
 
 function editPlaceError(){
