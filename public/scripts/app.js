@@ -190,14 +190,14 @@ $(document).ready(function(){
     }
 
 //DELETE PLACE
-    $(".delete_place").click(function (){
-      var currentPlaceId = $(this).closest('.place-id').data('place-id');
-      var url = '/api/neighborhoods/' + neighborhoodId + '/places/' + currentPlaceId;
-      $.ajax({
-        method: 'DELETE',
-        url: url,
-        success: handlePlaceDeleteResponse,
-        error: placeDeleteError
+  $(".delete_place").click(function (){
+    var currentPlaceId = $(this).closest('.place-id').data('place-id');
+    var url = '/api/neighborhoods/' + neighborhoodId + '/places/' + currentPlaceId;
+    $.ajax({
+      method: 'DELETE',
+      url: url,
+      success: handlePlaceDeleteResponse,
+      error: placeDeleteError
       });
     }); //WORKING
   }
