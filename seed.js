@@ -51,7 +51,7 @@ neighborhoodsList.push({
       address: "160 Jefferson Street",
       category: "Restaurant",
       goodStuff: "Clam Chowder with senic views of the San Francisco Bay",
-      openingHour: "11:30AM"
+      openingHour: "11:30AM",
       closingHour: "9:30 PM",
     },
     {
