@@ -54,3 +54,10 @@ function editPlaceSuccess(data){
 
 ![alt text](public/images/neighborhoodCard.png "neighborhood card")
 ![alt text](public/images/placeCard.png "place card")
+
+## Ideas for future upgrade
+
+* more flexibility navigating through the neighborhoods
+* more intuitive to now that clicking the neighborhood card will open another page
+* integrate the Google map with the page
+* possibility to add place images
