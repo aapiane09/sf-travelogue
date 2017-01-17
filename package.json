@@ -4,7 +4,7 @@
   "description": "A travel app for SF neighborhoods",
   "main": "server.js",
   "directories": {
-    "doc": "docs"
+    "doc": "docs"   -- do you have a docs directory?
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

@@ -28,6 +28,8 @@ SF-Travelogue API provides the following JSON endpoints:
 
 ## Code We Are Proud Of
 
+<!-- Why are these interesting or cool? -->
+
 ```
 <div class="center-align">
   <a href="https://www.google.com/maps/dir/here/{{this.address}}+San+Francisco,+CA" target="_blank" class="waves-effect waves-light btn-large" id="googleMaps"><i class="material-icons left">navigation</i>Directions</a>
